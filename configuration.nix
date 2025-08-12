@@ -101,8 +101,8 @@ gnome-keyring
 seahorse
 libreoffice
 # nixos-artwork
-# qjournalctl
 kdePackages.ksystemlog
+
 ];
 
 # aliases
