@@ -1,4 +1,5 @@
 {
+
 programs.rofi = {
   enable = true; 
   theme = "Arc-Dark"; 
@@ -9,4 +10,5 @@ programs.rofi = {
   	#kb-cancel = "Escape,Control+g,Control+q,Alt+Tab,Space+Right_Shift";
   }; 
 };
+
 }
