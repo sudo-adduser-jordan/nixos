@@ -1,5 +1,12 @@
 { config, pkgs, ... }:
+
+let
+  user = "user1";
+  hostName = "computer1";
+in
+
 {
+
 imports = [ 
   ./hardware-configuration.nix 
 ];
@@ -10,7 +17,7 @@ boot.loader.efi.canTouchEfiVariables = true;
 boot.kernelPackages = pkgs.linuxPackages_latest;
 
 # networking
-networking.hostName = "computer1"; 
+networking.hostName = hostName; 
 networking.networkmanager.enable = true;
 
 # local
@@ -57,45 +64,54 @@ services.pipewire = {
 # users
 users.users.user1 = {
   isNormalUser = true;
-  description = "user1";
+  description = "descripton of user";
   extraGroups = [ "networkmanager" "wheel" ];
-  # import configurations because home manager is a stupid waste of time manualy reformatting configs
-  # maybe theres a way to dump in format but still its extra steps guys cmon you dont need to rewrite everything
-  system.activationScripts.copyConfig = {
-  text = ''
-    cp -r /etc/nixos/.config /home/${user1}/.config
-    cp -r /etc/nixos/.vscode /home/${user1}/.vscode
-    cp -r /etc/nixos/Pictures /home/${user1}/Pictures
-    chown -R ${user1}:${user1} /home/${user1}/.config 
-    chown -R ${user1}:${user1} /home/${user1}/.vscode 
-    chown -R ${user1}:${user1} /home/${user1}/Pictures 
-  '';
-  # deps = [];
 };
 
-# home
-nixpkgs.config.allowUnfree = true;
-packages = with pkgs; 
-[ 
-fastfetch
-vscode
-rofi
-];
+system.activationScripts.copyConfig = {
+text = ''
+
+echo 
+echo ln -sf /etc/nixos/.gitignore /home/${user}/.gitignore
+
+echo rm -rf /home/user1/.config/Code
+echo rm -rf /home/user1/.config/fastfetch
+echo rm -rf /home/user1/.config/gtk-3.0
+echo rm -rf /home/user1/.config/gtk-4.0
+echo rm -rf /home/user1/.config/Mousepad
+echo rm -rf /home/user1/.config/rofi
+echo rm -rf /home/user1/.config/Thunar
+echo rm -rf /home/user1/.config/xfce4
+echo rm -rf /home/user1/.vscode/extensions
+
+echo ln -sf /etc/nixos/.config/* /home/${user}/.config
+echo ln -sf /etc/nixos/.vscode/* /home/${user}/.vscode
+echo ln -sf /etc/nixos/Pictures/* /home/${user}/Pictures
+echo 
+
+
+'';
 };
+
 
 # system
 nixpkgs.config.allowUnfree = true;
 environment.systemPackages = with pkgs; 
 [
 
+# config
+fastfetch
+vscode
+rofi
+
+# no config
 librewolf
 flatpak
 github-desktop
-git
 gh 
+git
 discord
 bash
-# zsh
 google-chrome
 xdg-utils
 xdg-desktop-portal
@@ -126,27 +142,6 @@ xdg.portal.extraPortals = [
       pkgs.xdg-desktop-portal
       pkgs.xdg-desktop-portal-gtk
 ];
-
-# gtk theme
-gtk.enable = true;
-gtk.theme = {
-     name = "Adwaita-dark";
-    # package = location;
-};
-gtk.iconTheme = {
-    name = "Adwaita";
-    # package = location;
-};
-gtk.gtk3.extraConfig = {
-    Settings = ''
-      gtk-application-prefer-dark-theme=1
-    '';
-};
-gtk.gtk4.extraConfig = {
-    Settings = ''
-      gtk-application-prefer-dark-theme=1
-    '';
-};
 
 system.stateVersion = "25.05"; 
 }
