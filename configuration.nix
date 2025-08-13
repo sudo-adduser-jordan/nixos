@@ -11,7 +11,7 @@ boot.loader.efi.canTouchEfiVariables = true;
 boot.kernelPackages = pkgs.linuxPackages_latest;
 
 # networking
-networking.hostName = "nixos"; 
+networking.hostName = "computer1"; 
 networking.networkmanager.enable = true;
 # networking.proxy.default = "http://user:password@proxy:port/";
 # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -92,7 +92,7 @@ git
 gh 
 discord
 bash
-zsh
+# zsh
 google-chrome
 xdg-utils
 xdg-desktop-portal
@@ -100,15 +100,17 @@ xdg-desktop-portal-gtk
 gnome-keyring
 seahorse
 libreoffice
-# nixos-artwork
 kdePackages.ksystemlog
-
 ];
 
 # aliases
 environment.shellAliases = {
-  update = "sudo nixos-rebuild switch";
-  codenix= "sudo code /etc/nixos/ --user-data-dir='.' --no-sandbox";
+  clean = "nix-collect-garbage";
+  update = "nixos-rebuild switch --upgrade";
+  rollback = "nixos-rebuild switch --rollback";
+  channel-list = "nix-channel --list";
+  channel-update = "nix-channel --update";
+  # codenix= "sudo code /etc/nixos/ --user-data-dir='.' --no-sandbox";
 };
 
 # portals
