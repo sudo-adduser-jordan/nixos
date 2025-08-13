@@ -66,10 +66,10 @@ users.users.user1 = {
 # home
 home-manager.users.user1 = { pkgs, ... }: {
 imports = [ 
+  ./gtk.nix
   ./xfconf.nix
   ./rofi.nix
   ./vscode.nix
-  ./gtk.nix
 ];
 nixpkgs.config.allowUnfree = true;
 home.packages = with pkgs; 
