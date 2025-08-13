@@ -20,7 +20,7 @@ xfce4-panel = {
           "panels/panel-1/position-locked" = true;
           "panels/panel-1/size" = 26;
 
-          "panels/panel-1/plugin-ids" = [ 1 2 3 4 5 6 7 8 ];
+          "panels/panel-1/plugin-ids" = [ 1 2 3 4 5 6 7 8 9 ];
           # 1
           "plugins/plugin-1" = "applicationsmenu";
           "plugins/plugin-1/show-button-title" = false;
@@ -50,8 +50,11 @@ xfce4-panel = {
           # 7
           "plugins/plugin-7" = "power-manager-plugin";
           # 8
-          "plugins/plugin-8" = "separator";
-          "plugins/plugin-8/style" = 0;
+          "plugins/plugin-8" = "pulse-audio";
+          "plugins/plugin-8/enable-keyboard-shortcuts" = true;
+          # 9
+          "plugins/plugin-9" = "separator";
+          "plugins/plugin-9/style" = 0;
   };
 
   xfce4-terminal = {
