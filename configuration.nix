@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 {
 imports = [ 
-  /nix/store/f70x7zvdiapka39q397i00cp3cal1hbx-home-manager-25.05.tar.gz/home-manager/nixos
   ./hardware-configuration.nix 
 ];
 
@@ -13,8 +12,6 @@ boot.kernelPackages = pkgs.linuxPackages_latest;
 # networking
 networking.hostName = "computer1"; 
 networking.networkmanager.enable = true;
-# networking.proxy.default = "http://user:password@proxy:port/";
-# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
 # local
 time.timeZone = "America/Los_Angeles";
@@ -36,6 +33,7 @@ services.flatpak.enable = true;
 services.gnome.gnome-keyring.enable = true;
 # security.pam.services.login.enableGnomeKeyring = true;
 
+# desktop environment
 services.xserver.enable = true;
 services.xserver.displayManager.lightdm.enable = true;
 services.xserver.desktopManager.xfce.enable = true;
@@ -43,9 +41,9 @@ services.xserver.xkb = {
   layout = "us";
   variant = "";
 };
-
 services.printing.enable = true;
 
+# sound
 services.pulseaudio.enable = false;
 security.rtkit.enable = true;
 services.pipewire = {
@@ -61,30 +59,35 @@ users.users.user1 = {
   isNormalUser = true;
   description = "user1";
   extraGroups = [ "networkmanager" "wheel" ];
+  # import configurations because home manager is a stupid waste of time manualy reformatting configs
+  # maybe theres a way to dump in format but still its extra steps guys cmon you dont need to rewrite everything
+  system.activationScripts.copyConfig = {
+  text = ''
+    cp -r /etc/nixos/.config /home/${user1}/.config
+    cp -r /etc/nixos/.vscode /home/${user1}/.vscode
+    cp -r /etc/nixos/Pictures /home/${user1}/Pictures
+    chown -R ${user1}:${user1} /home/${user1}/.config 
+    chown -R ${user1}:${user1} /home/${user1}/.vscode 
+    chown -R ${user1}:${user1} /home/${user1}/Pictures 
+  '';
+  # deps = [];
 };
-  
+
 # home
-home-manager.users.user1 = { pkgs, ... }: {
-imports = [ 
-  ./gtk.nix
-  ./xfconf.nix
-  ./rofi.nix
-  ./vscode.nix
-];
 nixpkgs.config.allowUnfree = true;
-home.packages = with pkgs; 
+packages = with pkgs; 
 [ 
+fastfetch
 vscode
 rofi
 ];
-home.stateVersion = "25.05"; 
 };
 
 # system
 nixpkgs.config.allowUnfree = true;
 environment.systemPackages = with pkgs; 
 [
-fastfetch
+
 librewolf
 flatpak
 github-desktop
@@ -101,6 +104,8 @@ gnome-keyring
 seahorse
 libreoffice
 kdePackages.ksystemlog
+# stacer
+
 ];
 
 # aliases
@@ -121,6 +126,27 @@ xdg.portal.extraPortals = [
       pkgs.xdg-desktop-portal
       pkgs.xdg-desktop-portal-gtk
 ];
+
+# gtk theme
+gtk.enable = true;
+gtk.theme = {
+     name = "Adwaita-dark";
+    # package = location;
+};
+gtk.iconTheme = {
+    name = "Adwaita";
+    # package = location;
+};
+gtk.gtk3.extraConfig = {
+    Settings = ''
+      gtk-application-prefer-dark-theme=1
+    '';
+};
+gtk.gtk4.extraConfig = {
+    Settings = ''
+      gtk-application-prefer-dark-theme=1
+    '';
+};
 
 system.stateVersion = "25.05"; 
 }
