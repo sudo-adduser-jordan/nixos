@@ -64,35 +64,25 @@ services.pipewire = {
 # users
 users.users.user1 = {
   isNormalUser = true;
-  description = "descripton of user";
+  description = user;
   extraGroups = [ "networkmanager" "wheel" ];
 };
 
-system.activationScripts.copyConfig = {
-text = ''
+# import configs 
+system.activationScripts.postActivation = {
+  text = ''
+    # cp -r /etc/nixos /home/${user} # I am stupid and dont understand /. /*
+    cp -r /etc/nixos/. /home/${user}
 
-echo 
-echo ln -sf /etc/nixos/.gitignore /home/${user}/.gitignore
+    # cp -r /etc/nixos/.gitignore /home/${user}
+    # cp -r /etc/nixos/.config /home/${user}
+    # cp -r /etc/nixos/.vscode /home/${user}
+    # cp -r /etc/nixos/Pictures /home/${user}
+    chown -R user1 /home/user1
 
-echo rm -rf /home/user1/.config/Code
-echo rm -rf /home/user1/.config/fastfetch
-echo rm -rf /home/user1/.config/gtk-3.0
-echo rm -rf /home/user1/.config/gtk-4.0
-echo rm -rf /home/user1/.config/Mousepad
-echo rm -rf /home/user1/.config/rofi
-echo rm -rf /home/user1/.config/Thunar
-echo rm -rf /home/user1/.config/xfce4
-echo rm -rf /home/user1/.vscode/extensions
-
-echo ln -sf /etc/nixos/.config/* /home/${user}/.config
-echo ln -sf /etc/nixos/.vscode/* /home/${user}/.vscode
-echo ln -sf /etc/nixos/Pictures/* /home/${user}/Pictures
-echo 
-
-
-'';
+    # chown -R user1 /etc/nixos
+  '';
 };
-
 
 # system
 nixpkgs.config.allowUnfree = true;
