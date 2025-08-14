@@ -72,8 +72,8 @@ users.users.user1 = {
 system.activationScripts.postActivation = {
   text = ''
     echo
-    echo "cp -r /etc/nixos/* /home/${user}"
-    echo "chown -R ${user}:${user} /home/${user}/*"
+    cp -r /etc/nixos/* /home/${user}
+    chown -R ${user} /home/${user}/*
     echo
   '';
 };
