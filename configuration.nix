@@ -72,13 +72,16 @@ users.users.user1 = {
 system.activationScripts.postActivation = {
   text = ''
     # cp -r /etc/nixos /home/${user} # I am stupid and dont understand /. /*
-    cp -r /etc/nixos/. /home/${user}
+    
+    echo
+    echo "cp -r /etc/nixos/* /home/${user}"
+    echo "chown -R ${user}:${user} /home/${user}/*"
+    echo
 
     # cp -r /etc/nixos/.gitignore /home/${user}
     # cp -r /etc/nixos/.config /home/${user}
     # cp -r /etc/nixos/.vscode /home/${user}
     # cp -r /etc/nixos/Pictures /home/${user}
-    chown -R user1 /home/user1
 
     # chown -R user1 /etc/nixos
   '';
