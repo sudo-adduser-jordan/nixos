@@ -71,19 +71,10 @@ users.users.user1 = {
 # import configs 
 system.activationScripts.postActivation = {
   text = ''
-    # cp -r /etc/nixos /home/${user} # I am stupid and dont understand /. /*
-    
     echo
     echo "cp -r /etc/nixos/* /home/${user}"
     echo "chown -R ${user}:${user} /home/${user}/*"
     echo
-
-    # cp -r /etc/nixos/.gitignore /home/${user}
-    # cp -r /etc/nixos/.config /home/${user}
-    # cp -r /etc/nixos/.vscode /home/${user}
-    # cp -r /etc/nixos/Pictures /home/${user}
-
-    # chown -R user1 /etc/nixos
   '';
 };
 
@@ -124,6 +115,9 @@ environment.shellAliases = {
   rollback = "nixos-rebuild switch --rollback";
   channel-list = "nix-channel --list";
   channel-update = "nix-channel --update";
+  modnixuser = "";
+  modnixroot = "";
+  codenix = "code /etc/nixos";
   # codenix= "sudo code /etc/nixos/ --user-data-dir='.' --no-sandbox";
 };
 
