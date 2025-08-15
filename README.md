@@ -11,7 +11,7 @@
     nixos-rebuild switch -I nixos-config=/home/{user_account_containing source}/nixos/configuration.nix
 ```
 
-3. you can now edit your `source` in 
+>3. you can now edit your `source` in 
 
 ```sh
    code ~/nixos # vim is for nerds
