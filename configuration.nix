@@ -46,8 +46,6 @@ services.xserver.displayManager.lightdm.enable = true;
 services.xserver.displayManager.lightdm.extraConfig = ''
 # Custom configuration options
 '';
-
-
 services.xserver.xkb = {
     layout = "us";
     variant = "";
@@ -212,7 +210,6 @@ environment.shellAliases = {
     switch = "nixos-rebuild switch -I nixos-config=/home/user1/nixos/configuration.nix";
     # codenix= "sudo code /etc/nixos/ --user-data-dir='.' --no-sandbox";
 };
-
 
 }
 
