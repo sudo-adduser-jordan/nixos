@@ -14,12 +14,12 @@ build from source
 you can now edit your source in 
 
 ```sh
-~/nixos
+    ~/nixos
 ```
 and switch to a new configuration
 
 ```sh
-switch
+    switch
 ```
 
 xfce meta framework
