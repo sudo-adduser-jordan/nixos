@@ -1,13 +1,7 @@
 # nixos configuration
 
 ```sh
-    git clone https://github.com/sudo-adduser-jordan/nixos --no-preserve-root
-    nix-switch --update
+    git clone https://github.com/sudo-adduser-jordan/nixos
+    nixos-rebuild switch -I nixos-config=/home/user1/nixos/configuration.nix
 ```
-
-dotfiles are copied into home via a postActivationScript
-
-home manager is a waste of time
-
-
-
+xfce meta framework
