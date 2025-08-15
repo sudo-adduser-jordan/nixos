@@ -58,8 +58,7 @@
       <property name="override" type="bool" value="true"/>
       <property name="&lt;Shift&gt;space" type="string" value="xfce4-terminal"/>
       <property name="&lt;Primary&gt;space" type="string" value="rofi -show"/>
-      <property name="&lt;Alt&gt;F1" type="string" value="xfce4-popup-whiskermenu"/>
-      <property name="Super_L" type="string" value="xcape -e &apos;Super_L=Alt_L|F1&apos;"/>
+      <property name="&lt;Super_L&gt;Shift_R" type="string" value="xfce4-popup-whiskermenu"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">

@@ -85,7 +85,6 @@ home.file = { # will replace all with hashes but not ones without
 
 nixpkgs.config.allowUnfree = true;
 home.packages = with pkgs; [ 
-    xcape
     rofi
     fastfetch
 
