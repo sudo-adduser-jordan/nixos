@@ -4,6 +4,9 @@
 { config, pkgs, ... }:
 
 let
+    # version = "stable 25"
+    # user = "user1"
+    # host = "computer1"
     home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
 in
 
@@ -38,8 +41,13 @@ i18n.extraLocaleSettings = {
 
 # xserver
 services.xserver.enable = true;
-services.xserver.displayManager.lightdm.enable = true;
 services.xserver.desktopManager.xfce.enable = true;
+services.xserver.displayManager.lightdm.enable = true;
+services.xserver.displayManager.lightdm.extraConfig = ''
+# Custom configuration options
+'';
+
+
 services.xserver.xkb = {
     layout = "us";
     variant = "";
@@ -141,7 +149,8 @@ fonts.packages = with pkgs; [
     font-awesome
     font-awesome_4
     font-awesome_5
-
+    adwaita-fonts
+    nerd-fonts.adwaita-mono
 ];
 
 environment.systemPackages = with pkgs; [
@@ -166,8 +175,15 @@ environment.systemPackages = with pkgs; [
     xdg-desktop-portal
     xdg-desktop-portal-gtk
 
-    nixos-icons
     icon-library
+    nixos-icons
+
+    theme-obsidian2
+    adwaita-icon-theme
+    morewaita-icon-theme
+
+    nerd-fonts.adwaita-mono
+    nerd-fonts.jetbrains-mono
 ]; system.stateVersion = "25.05"; 
 
 # portals
@@ -196,13 +212,14 @@ environment.shellAliases = {
     # codenix= "sudo code /etc/nixos/ --user-data-dir='.' --no-sandbox";
 };
 
+
 }
 
-
-
-# fonts nerd jetbrains
-# light dm profile logo
 # xfce menu logo
+# light dm profile logo
+
+# remove percentage battery
+# panel add user log options
 
 
 
