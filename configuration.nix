@@ -1,6 +1,5 @@
 # nixos-rebuild switch -I nixos-config=/home/user1/nixos/configuration.nix
 # nix-prefetch-url "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/tal7aouy/vsextensions/theme/3.1.0/vspackage"
-# todo astro web post 1 post 2 
 { config, pkgs, ... }:
 
 let
@@ -81,7 +80,7 @@ home.file = { # will replace all with hashes but not ones without
         source = ./.config;
         recursive = true;
     };
-}; # check for home manager auto delete files instead of throwing inside journals
+}; 
 
 nixpkgs.config.allowUnfree = true;
 home.packages = with pkgs; [ 
@@ -213,14 +212,9 @@ environment.shellAliases = {
 
 }
 
-
-
 # xfce menu logo
 # light dm profile logo
-
 # turn off metrics vscode
-
-# rofi theme
 # librewolf dark theme
 # librewolf extensions
 # librewolf bookmarks
