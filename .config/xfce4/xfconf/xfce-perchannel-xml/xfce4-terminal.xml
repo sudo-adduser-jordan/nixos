@@ -6,4 +6,5 @@
   <property name="font-use-system" type="bool" value="false"/>
   <property name="font-name" type="string" value="Monospace 12"/>
   <property name="misc-show-unsafe-paste-dialog" type="bool" value="false"/>
+  <property name="misc-confirm-close" type="bool" value="false"/>
 </channel>

@@ -1,5 +1,6 @@
 # nixos-rebuild switch -I nixos-config=/home/user1/nixos/configuration.nix
 # nix-prefetch-url "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/tal7aouy/vsextensions/theme/3.1.0/vspackage"
+# todo astro web post 1 post 2 
 { config, pkgs, ... }:
 
 let
@@ -87,23 +88,23 @@ home.packages = with pkgs; [
         bbenoist.nix
         golang.go
         bbenoist.nix
-        astro-build.astro-vscode
-        usernamehw.errorlens
-        ritwickdey.liveserver
-        esbenp.prettier-vscode
-        mechatroner.rainbow-csv
-        github.github-vscode-theme
-        # streetsidesoftware.code-spell-checker
-        ibm.output-colorizer
-        gitlab.gitlab-workflow
         redhat.vscode-xml
         redhat.vscode-yaml
+        usernamehw.errorlens
+        ibm.output-colorizer
+        ritwickdey.liveserver
+        esbenp.prettier-vscode
+        astro-build.astro-vscode
+        mechatroner.rainbow-csv
+        gitlab.gitlab-workflow
+        catppuccin.catppuccin-vsc
+        github.github-vscode-theme
         yzhang.markdown-all-in-one
+        elixir-lsp.vscode-elixir-ls
         vscode-icons-team.vscode-icons
         ms-vscode.cpptools-extension-pack 
         vscjava.vscode-java-pack # intelliCode included
-        catppuccin.catppuccin-vsc
-        elixir-lsp.vscode-elixir-ls
+        # streetsidesoftware.code-spell-checker
     ] ++ 
     pkgs.vscode-utils.extensionsFromVscodeMarketplace [ # nix-prefetch-url 
     { # https://tal7aouy.gallery.vsassets.io/_apis/public/gallery/publisher/tal7aouy/extension/theme/3.1.0/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage
@@ -136,27 +137,37 @@ home.packages = with pkgs; [
 
 # system
 nixpkgs.config.allowUnfree = true;
+fonts.packages = with pkgs; [
+    font-awesome
+    font-awesome_4
+    font-awesome_5
+
+];
+
 environment.systemPackages = with pkgs; [
     gh
     git
+    github-desktop
     
     discord
     librewolf
     google-chrome
     
-    github-desktop
     libreoffice
     
     seahorse
     gnome-keyring
     
-    kdePackages.ksystemlog
     systemdgenie
+    kdePackages.ksystemlog
     
     flatpak
     xdg-utils
     xdg-desktop-portal
     xdg-desktop-portal-gtk
+
+    nixos-icons
+    icon-library
 ]; system.stateVersion = "25.05"; 
 
 # portals
@@ -184,4 +195,16 @@ environment.shellAliases = {
     switch = "nixos-rebuild switch -I nixos-config=/home/user1/nixos/configuration.nix";
     # codenix= "sudo code /etc/nixos/ --user-data-dir='.' --no-sandbox";
 };
+
 }
+
+
+
+# fonts nerd jetbrains
+# light dm profile logo
+# xfce menu logo
+
+
+
+
+
