@@ -1,11 +1,11 @@
 # nixos 
 
-1. clone `source` into `home`
+>1. clone `source` into `home`
 
 ```sh
     git clone https://github.com/sudo-adduser-jordan/nixos
 ```
-2.`switch` from `source`
+>2.`switch` from `source`
 
 ```sh
     nixos-rebuild switch -I nixos-config=/home/{user_account_containing source}/nixos/configuration.nix
@@ -17,7 +17,7 @@
    code ~/nixos # vim is for nerds
 ```
 
-4. and `switch` to a new configuration
+>4. and `switch` to a new configuration
 
 ```sh
     sudo switch
