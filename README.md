@@ -1,11 +1,11 @@
 # nixos 
 
-clone source into home
+clone `source` into `home`
 
 ```sh
     git clone https://github.com/sudo-adduser-jordan/nixos
 ```
-build from source
+`switch` from `source`
 
 ```sh
     nixos-rebuild switch -I nixos-config=/home/{user_account_containing source}/nixos/configuration.nix
