@@ -212,9 +212,13 @@ environment.shellAliases = {
 
 }
 
-# xfce menu logo
-# light dm profile logo
 # turn off metrics vscode
+# xfce menu logo
+# light dm profile logo or remove
 # librewolf dark theme
 # librewolf extensions
 # librewolf bookmarks
+# flatpak add remote ref
+
+
+
