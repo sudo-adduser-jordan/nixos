@@ -11,15 +11,16 @@ clone `source` into `home`
     nixos-rebuild switch -I nixos-config=/home/{user_account_containing source}/nixos/configuration.nix
 ```
 
-you can now edit your source in 
+you can now edit your `source` in 
 
 ```sh
    code ~/nixos # vim is for nerds
 ```
-and switch to a new configuration
+
+and `switch` to a new configuration
 
 ```sh
-    switch
+    sudo switch
 ```
 
 xfce meta framework
