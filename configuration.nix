@@ -221,7 +221,6 @@ environment.shellAliases = {
 # remove percentage battery
 # panel add user log options
 
+# turn off metrics vscode
 
-
-
-
+# rofi theme
