@@ -4,8 +4,8 @@
 
 let
     # version = "stable 25"
-    # user = "user1"
-    # host = "computer1"
+    user = "user1";
+    host = "computer1";
     home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
 in
 
@@ -20,7 +20,7 @@ boot.loader.systemd-boot.enable = true;
 boot.loader.efi.canTouchEfiVariables = true;
 
 # network
-networking.hostName = "computer1"; 
+networking.hostName = host; 
 networking.networkmanager.enable = true;
 
 # Set your time zone.
@@ -64,14 +64,14 @@ services.pipewire = {
 };
 
 # account 1
-users.users.user1 = {
+users.users.${user} = {
     isNormalUser = true;
-    description= "user1";
+    description= user;
     extraGroups = [ "networkmanager" "wheel" ];
 };
 
-home-manager.users.user1 = { pkgs, ... }: {
-home.file = { # will replace all with hashes but not ones without
+home-manager.users.${user} = { pkgs, ... }: {
+home.file = { 
     "Pictures" = {
         source = ./Pictures;
         recursive = true;
@@ -206,8 +206,7 @@ environment.shellAliases = {
     generations-delete = "nix-env --delete-generations";
     generations = "nix-env -p /nix/var/nix/profiles/system --list-generations";
     switch-root = "nixos-rebuild switch";
-    switch = "nixos-rebuild switch -I nixos-config=/home/user1/nixos/configuration.nix";
-    # codenix= "sudo code /etc/nixos/ --user-data-dir='.' --no-sandbox";
+    switch = "nixos-rebuild switch -I nixos-config=/home/${user}/nixos/configuration.nix";
 };
 
 }
