@@ -23,7 +23,7 @@
     sudo switch
 ```
 
-# xfce meta framework
+# ^ xfce meta framework ^
 
 >what you dont like it? go use tmux and vim you `nerd`
 ```sh
