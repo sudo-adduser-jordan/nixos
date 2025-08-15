@@ -91,7 +91,7 @@ home.packages = with pkgs; [
     fastfetch
 
     # vscode
-    ( vscode-with-extensions.override {
+    (vscode-with-extensions.override {
     vscodeExtensions = with vscode-extensions; [
         bbenoist.nix
         golang.go
@@ -139,8 +139,7 @@ home.packages = with pkgs; [
         version = "0.8.0";
         sha256 = "1grf69n270gsizg2z053ldjn3k0sy8iv8ja8xrv5iv183x993j1v";
     }
-    ];}
-    )
+    ];})
 ]; home.stateVersion = "25.05"; };
 
 # system
@@ -170,13 +169,15 @@ environment.systemPackages = with pkgs; [
     systemdgenie
     kdePackages.ksystemlog
     
+    xfce.xfce4-whiskermenu-plugin
+
     flatpak
     xdg-utils
     xdg-desktop-portal
     xdg-desktop-portal-gtk
 
     icon-library
-    nixos-icons
+    # nixos-icons
 
     theme-obsidian2
     adwaita-icon-theme
@@ -215,12 +216,14 @@ environment.shellAliases = {
 
 }
 
+
+
 # xfce menu logo
 # light dm profile logo
-
-# remove percentage battery
-# panel add user log options
 
 # turn off metrics vscode
 
 # rofi theme
+# librewolf dark theme
+# librewolf extensions
+# librewolf bookmarks
