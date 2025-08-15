@@ -12,7 +12,7 @@
       <property name="icon-size" type="uint" value="0"/>
       <property name="length" type="int" value="100"/>
       <property name="plugin-ids" type="array">
-        <value type="int" value="1"/>
+        <value type="int" value="15"/>
         <value type="int" value="11"/>
         <value type="int" value="2"/>
         <value type="int" value="3"/>
@@ -31,16 +31,6 @@
     </property>
   </property>
   <property name="plugins" type="empty">
-    <property name="plugin-1" type="string" value="applicationsmenu">
-      <property name="flat-buttons" type="bool" value="false"/>
-      <property name="grouping" type="bool" value="false"/>
-      <property name="show-handle" type="bool" value="false"/>
-      <property name="show-labels" type="bool" value="false"/>
-      <property name="show-tooltips" type="bool" value="true"/>
-      <property name="window-scrolling" type="bool" value="false"/>
-      <property name="show-button-title" type="bool" value="false"/>
-      <property name="show-menu-icons" type="bool" value="true"/>
-    </property>
     <property name="plugin-2" type="string" value="tasklist">
       <property name="grouping" type="bool" value="false"/>
       <property name="expand" type="bool" value="true"/>
@@ -132,6 +122,22 @@
     <property name="plugin-13" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
       <property name="expand" type="bool" value="false"/>
+    </property>
+    <property name="plugin-15" type="string" value="whiskermenu">
+      <property name="launcher-show-name" type="bool" value="true"/>
+      <property name="menu-height" type="int" value="10000"/>
+      <property name="menu-width" type="int" value="10000"/>
+      <property name="view-mode" type="int" value="0"/>
+      <property name="position-categories-horizontal" type="bool" value="false"/>
+      <property name="position-categories-alternate" type="bool" value="true"/>
+      <property name="position-profile-alternate" type="bool" value="false"/>
+      <property name="profile-shape" type="int" value="2"/>
+      <property name="default-category" type="int" value="2"/>
+      <property name="recent" type="array">
+        <value type="string" value="nixos-manual.desktop"/>
+      </property>
+      <property name="button-single-row" type="bool" value="true"/>
+      <property name="position-commands-alternate" type="bool" value="true"/>
     </property>
   </property>
   <property name="configver" type="int" value="2"/>
