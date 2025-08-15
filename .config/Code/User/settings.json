@@ -32,7 +32,7 @@
         "*.sdb": "${capture}.${extname}-*",
         "*.s3db": "${capture}.${extname}-*"
     },
-    "workbench.colorTheme": "Gruber Darker",
+    "workbench.colorTheme": "Theme Mix",
     "editor.inlayHints.enabled": "off",
     "[java]": {
         "editor.defaultFormatter": "redhat.java"
@@ -76,5 +76,6 @@
         "ylabel",
         "yticklabels"
     ],
-    "jupyter.askForKernelRestart": false
+    "jupyter.askForKernelRestart": false,
+    "editor.detectIndentation": false
 }
