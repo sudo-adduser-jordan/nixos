@@ -8,13 +8,13 @@ clone source into home
 build from source
 
 ```sh
-    nixos-rebuild switch -I nixos-config=/home/user1/nixos/configuration.nix
+    nixos-rebuild switch -I nixos-config=/home/{user_account_containing source}/nixos/configuration.nix
 ```
 
 you can now edit your source in 
 
 ```sh
-    ~/nixos
+   code ~/nixos # vim is for nerds
 ```
 and switch to a new configuration
 
