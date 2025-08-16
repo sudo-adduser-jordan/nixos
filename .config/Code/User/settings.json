@@ -44,4 +44,5 @@
         "ylabel",
         "yticklabels"
     ],
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
 }
