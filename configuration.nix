@@ -3,13 +3,15 @@
 { config, pkgs, ... }:
 
 let
-    # version = "stable 25"
+    version = "25.05";
     user = "user1";
     host = "computer1";
+    timezone ="America/Los_Angeles";
     home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
 in
 
-{
+{   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
 imports = [ 
     /etc/nixos/hardware-configuration.nix
     (import "${home-manager}/nixos")
@@ -24,7 +26,7 @@ networking.hostName = host;
 networking.networkmanager.enable = true;
 
 # Set your time zone.
-time.timeZone = "America/Los_Angeles";
+time.timeZone = timezone;
 i18n.defaultLocale = "en_US.UTF-8";
 i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
@@ -42,9 +44,6 @@ i18n.extraLocaleSettings = {
 services.xserver.enable = true;
 services.xserver.desktopManager.xfce.enable = true;
 services.xserver.displayManager.lightdm.enable = true;
-services.xserver.displayManager.lightdm.extraConfig = ''
-# Custom configuration options
-'';
 services.xserver.xkb = {
     layout = "us";
     variant = "";
@@ -140,24 +139,13 @@ home.packages = with pkgs; [
 ]; home.stateVersion = "25.05"; };
 
 # system
-nixpkgs.config.allowUnfree = true;
-fonts.packages = with pkgs; [
-    font-awesome
-    font-awesome_4
-    font-awesome_5
-    adwaita-fonts
-    nerd-fonts.adwaita-mono
-];
-
-environment.systemPackages = with pkgs; [
+nixpkgs.config.allowUnfree = true; environment.systemPackages = with pkgs; [
     gh
     git
     github-desktop
 
     pnpm
     nodejs_22
-
-    miraclecast
 
     discord
     librewolf
@@ -187,7 +175,16 @@ environment.systemPackages = with pkgs; [
 
     nerd-fonts.adwaita-mono
     nerd-fonts.jetbrains-mono
-]; system.stateVersion = "25.05"; 
+]; system.stateVersion = version; 
+
+fonts.packages = with pkgs; [
+    adwaita-fonts
+    font-awesome
+    font-awesome_4
+    font-awesome_5
+    nerd-fonts.adwaita-mono
+];
+
 
 # portals
 services.flatpak.enable = true; # needs portals
