@@ -154,8 +154,11 @@ environment.systemPackages = with pkgs; [
     git
     github-desktop
 
+    pnpm
     nodejs_22
-    
+
+    miraclecast
+
     discord
     librewolf
     google-chrome

@@ -108,6 +108,7 @@
     <property name="plugin-9" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
       <property name="style" type="int" value="0"/>
+      <property name="known-players" type="string" value="librewolf"/>
     </property>
     <property name="plugin-8" type="string" value="power-manager-plugin">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
