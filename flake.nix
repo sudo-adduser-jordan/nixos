@@ -43,12 +43,12 @@ in
   };
 
 #   # laptop
-#   nixosConfigurations.proxima = nixpkgs.lib.nixosSystem {
+#   nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
 #     system = "x86_64-linux";
 #     modules = [
 #       inputs.home-manager.nixosModules.home-manager
 #       inputs.sops-nix.nixosModules.sops
-#       ./hosts/proxima/configuration.nix
+#       ./hosts/laptop/configuration.nix
 #     ];
 #     specialArgs = {
 #       inherit inputs primary-user;
@@ -56,12 +56,12 @@ in
 #   };
   
 #   # desktop
-#   nixosConfigurations.toliman = nixpkgs.lib.nixosSystem {
+#   nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
 #     system = "x86_64-linux";
 #     modules = [
 #       inputs.home-manager.nixosModules.home-manager
 #       inputs.sops-nix.nixosModules.sops
-#       ./hosts/toliman/configuration.nix
+#       ./hosts/desktop/configuration.nix
 #     ];
 #     specialArgs = {
 #       inherit inputs primary-user;
