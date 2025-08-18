@@ -1,7 +1,6 @@
 { config, pkgs, specialArgs, ... }:
 {
 
-
   home-manager.users.${specialArgs.user} = { config, ... }: ({
     programs.rofi = {
       enable = true; 
@@ -14,16 +13,5 @@
     };
 
   });
-
-  programs.thunar.plugins = with pkgs.xfce; [
-    thunar-archive-plugin
-    thunar-volman
-  ];
-
-  users.users.${specialArgs.user}.packages = with pkgs; [
-  ];
-
-  xdg.portal = {
-  };
 
 }

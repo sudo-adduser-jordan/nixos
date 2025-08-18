@@ -34,37 +34,15 @@ excludePackages = with pkgs; [
 # system
 environment.systemPackages = with pkgs; [
 
-# Shell, window manager and x11 packages need to be installed at the
-# system level or else you will experience quirks with nixOS 24.05.
-# wmctrl # workspace switcher used by /usr/bin/switch-workspace
-xclip
-xfce.mousepad
-xfce.thunar-archive-plugin
-xfce.thunar-volman
-xfce.xfce4-genmon-plugin
-xfce.xfce4-netload-plugin
-xfce.xfce4-power-manager
-xfce.xfce4-pulseaudio-plugin
-# xfce.xfce4-weather-plugin
-xfce.xfwm4-themes
-xorg.xinit
-
 ];
 
 environment.xfce.excludePackages = with pkgs; [
-# xfce.xfce4-appfinder
-# xfce.xfce4-taskmanager
-# xfce.xfce4-terminal
 ];
-
-programs.thunar.plugins = with pkgs.xfce; [
-thunar-archive-plugin
-thunar-volman
-];
-
 
 # home
 users.users.${specialArgs.user}.packages = with pkgs; [
+
+# xfce.thunar
 # file-roller
 # orchis-theme     # gtk theme
 # paper-icon-theme # xfce icons
@@ -74,13 +52,13 @@ users.users.${specialArgs.user}.packages = with pkgs; [
 
 home-manager.users.${specialArgs.user} = { config, ... }: ({
 
-home.pointerCursor = {
-    name = "Vanilla-DMZ";
-    package = pkgs.vanilla-dmz;
-    size = 64;
-    x11.enable = true;
-};
-home.file.".config/xfce4/helpers.rc".text = "TerminalEmulator=alacritty";
+# home.pointerCursor = {
+    # name = "Vanilla-DMZ";
+    # package = pkgs.vanilla-dmz;
+    # size = 64;
+    # x11.enable = true;
+# };
+# home.file.".config/xfce4/helpers.rc".text = "TerminalEmulator=alacritty";
 home.file = {
 ".config/xfce4/desktop/accels.scm".text = ''
 ; xfdesktop GtkAccelMap rc-file         -*- scheme -*-
@@ -117,7 +95,7 @@ home.file = {
 ; (gtk_accel_path "<Actions>/XfdesktopIconView/toggle-cursor-2" "<Primary>KP_Space")
 ; (gtk_accel_path "<Actions>/XfceDesktop/reload-1" "F5")
 ; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/open-filesystem" "")
-; (gtk_accel_path "<Actions>/XfdesktopIconView/activate-5" "KP_Enter")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/activate-5" "KP_Enter") 
 ; (gtk_accel_path "<Actions>/XfceDesktop/primary-menu" "<Shift>F10")
 ; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/create-document" "")
 ; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/create-folder" "<Primary><Shift>n")
@@ -203,19 +181,19 @@ home.file = {
 ; (gtk_accel_path "<Actions>/terminal-window/goto-tab-1" "<Alt>1")
 '';
 # https://github.com/catppuccin/xfce4-terminal
- ".local/share/xfce4/terminal/colorschemes/catppuccin-mocha.theme".text = ''
-      [Scheme]
-      Name=Catppuccin-Mocha
-      ColorCursor=#f5e0dc
-      ColorCursorForeground=#11111b
-      ColorCursorUseDefault=FALSE
-      ColorForeground=#cdd6f4
-      ColorBackground=#1e1e2e
-      ColorSelectionBackground=#585b70
-      ColorSelection=#cdd6f4
-      ColorSelectionUseDefault=FALSE
-      TabActivityColor=#fab387
-      ColorPalette=#45475a;#f38ba8;#a6e3a1;#f9e2af;#89b4fa;#f5c2e7;#94e2d5;#bac2de;#585b70;#f38ba8;#a6e3a1;#f9e2af;#89b4fa;#f5c2e7;#94e2d5;#a6adc8
+".local/share/xfce4/terminal/colorschemes/catppuccin-mocha.theme".text = ''
+[Scheme]
+Name=Catppuccin-Mocha
+ColorCursor=#f5e0dc
+ColorCursorForeground=#11111b
+ColorCursorUseDefault=FALSE
+ColorForeground=#cdd6f4
+ColorBackground=#1e1e2e
+ColorSelectionBackground=#585b70
+ColorSelection=#cdd6f4
+ColorSelectionUseDefault=FALSE
+TabActivityColor=#fab387
+ColorPalette=#45475a;#f38ba8;#a6e3a1;#f9e2af;#89b4fa;#f5c2e7;#94e2d5;#bac2de;#585b70;#f38ba8;#a6e3a1;#f9e2af;#89b4fa;#f5c2e7;#94e2d5;#a6adc8
 '';
 };
 
@@ -271,10 +249,10 @@ xfconf.settings.xfce4-notifyd = {
 "date-time-custom-format" = "%a %H:%M:%S";
 };
 
-xfconf.settings.thunar = {
-"last-view" = "ThunarCompactView";
-# "misc-show-delete-action" = false;
-};
+# xfconf.settings.thunar = {
+# "last-view" = "ThunarCompactView";
+# # "misc-show-delete-action" = false;
+# };
 
 xfconf.settings.xfce4-desktop = {
 # "backdrop/screen0/monitor0/workspace0/last-image" = "/etc/nixos/plants.jpg";
@@ -295,10 +273,13 @@ xfconf.settings.xfce4-keyboard-shortcuts = {
 "xfwm4/custom/<Super>Down" = "tile_down_key";
 "xfwm4/custom/<Super>Right" = "tile_right_key";
 "xfwm4/custom/<Super>Left" = "tile_left_key";
-# "commands/custom/<Super>space" = "rofi -show drun";
+"xfwm4/custom/<Primary>q" = "close_window_key";
+"commands/custom/<Primary>space" = "rofi -show drun";
 };
 
 xfconf.settings.xfce4-panel = {
+"configver" = 2;
+
 "panels/0/dark-mode" = true;
 "panels/0/panel-1/position" = "p=6;x=0;y=0";
 "panels/0/panel-1/size" = 26;
@@ -306,6 +287,7 @@ xfconf.settings.xfce4-panel = {
 "panels/0/panel-1/enter-opacity" = 75;
 "panels/0/panel-1/icon-size" = 0;
 "panels/0/panel-1/length" = 100;
+
 "panels/0/panel-1/plugin-ids/0" = 15;
 "panels/0/panel-1/plugin-ids/1" = 11;
 "panels/0/panel-1/plugin-ids/2" = 2;
@@ -321,6 +303,7 @@ xfconf.settings.xfce4-panel = {
 "panels/0/panel-1/plugin-ids/12" = 13;
 "panels/0/panel-1/position-locked" = true;
 "panels/0/panel-1/leave-opacity" = 75;
+
 "plugins/plugin-2/grouping" = false;
 "plugins/plugin-2/expand" = true;
 "plugins/plugin-2/style" = 0;
@@ -329,9 +312,11 @@ xfconf.settings.xfce4-panel = {
 "plugins/plugin-2/show-labels" = false;
 "plugins/plugin-2/show-tooltips" = true;
 "plugins/plugin-2/window-scrolling" = false;
+
 "plugins/plugin-5/style" = 0;
 "plugins/plugin-5/rows" = 1;
 "plugins/plugin-5/expand" = true;
+
 "plugins/plugin-7/style" = 0;
 "plugins/plugin-7/enable-keyboard-shortcuts" = true;
 "plugins/plugin-7/digital-date-font" = "Sans Bold 10";
@@ -339,6 +324,7 @@ xfconf.settings.xfce4-panel = {
 "plugins/plugin-7/digital-time-font" = "Sans Bold 10";
 "plugins/plugin-7/digital-time-format" = "%a %d %R";
 "plugins/plugin-7/timezone" = "UTC";
+
 "plugins/plugin-4/show-button-title" = false;
 "plugins/plugin-4/show-menu-icons" = true;
 "plugins/plugin-4/icon-size" = 0;
@@ -349,8 +335,10 @@ xfconf.settings.xfce4-panel = {
 "plugins/plugin-4/digital-time-format" = "%I:%M %p";
 "plugins/plugin-4/mode" = 2;
 "plugins/plugin-4/timezone" = "America/Los_Angeles";
+
 "plugins/plugin-3/expand" = true;
 "plugins/plugin-3/style" = 0;
+
 "plugins/plugin-6/digital-date-font" = "Monospace 10";
 "plugins/plugin-6/digital-layout" = 3;
 "plugins/plugin-6/digital-time-font" = "Monospace 10";
@@ -361,14 +349,21 @@ xfconf.settings.xfce4-panel = {
 "plugins/plugin-6/digital-date-format" = "%B %d, %Y";
 "plugins/plugin-6/icon-size" = 0;
 "plugins/plugin-6/square-icons" = true;
+
 "plugins/plugin-9/enabled-keyboard-shortcuts" = true;
 "plugins/plugin-9/style" = 0;
+
 "plugins/plugin-8/enable-keyboard-shortcuts" = true;
+
 "plugins/plugin-10/style" = 0;
+
 "plugins/plugin-11/style" = 2;
+
 "plugins/plugin-12" = "actions";
+
 "plugins/plugin-13/style" = 0;
 "plugins/plugin-13/expand" = false;
+
 "plugins/plugin-15/launcher-show-name" = true;
 "plugins/plugin-15/menu-height" = 10000;
 "plugins/plugin-15/menu-width" = 10000;
@@ -503,38 +498,38 @@ xfconf.settings.xfwm4 = {
   "general/workspace_names/0" = "Workspace 1";
 };
 
-xfconf.settings.xsettings = {
-  "Net/ThemeName" = "Adwaita-dark";
-  "Net/IconThemeName" = "MoreWaita";
-  "Net/DoubleClickTime" = "";
-  "Net/DoubleClickDistance" = "";
-  "Net/DndDragThreshold" = "";
-  "Net/CursorBlink" = "";
-  "Net/CursorBlinkTime" = "";
-  "Net/SoundThemeName" = "";
-  "Net/EnableEventSounds" = "";
-  "Net/EnableInputFeedbackSounds" = "";
-  "Xft/DPI" = "";
-  "Xft/Antialias" = "";
-  "Xft/Hinting" = "";
-  "Xft/HintStyle" = "";
-  "Xft/RGBA" = "";
-  "Gtk/CanChangeAccels" = "";
-  "Gtk/ColorPalette" = "";
-  "Gtk/FontName" = "";
-  "Gtk/MonospaceFontName" = "";
-  "Gtk/IconSizes" = "";
-  "Gtk/KeyThemeName" = "";
-  "Gtk/MenuImages" = "";
-  "Gtk/ButtonImages" = "";
-  "Gtk/MenuBarAccel" = "";
-  "Gtk/CursorThemeName" = "";
-  "Gtk/CursorThemeSize" = "";
-  "Gtk/DecorationLayout" = "icon,menu:minimize,maximize,close";
-  "Gtk/DialogsUseHeader" = "";
-  "Gtk/TitlebarMiddleClick" = "";
-  "Gdk/WindowScalingFactor" = "";
-};
+# xfconf.settings.xsettings = {
+#   "Net/ThemeName" = "Adwaita-dark";
+#   "Net/IconThemeName" = "MoreWaita";
+#   "Net/DoubleClickTime" = "";
+#   "Net/DoubleClickDistance" = "";
+#   "Net/DndDragThreshold" = "";
+#   "Net/CursorBlink" = "";
+#   "Net/CursorBlinkTime" = "";
+#   "Net/SoundThemeName" = "";
+#   "Net/EnableEventSounds" = "";
+#   "Net/EnableInputFeedbackSounds" = "";
+#   "Xft/DPI" = "";
+#   "Xft/Antialias" = "";
+#   "Xft/Hinting" = "";
+#   "Xft/HintStyle" = "";
+#   "Xft/RGBA" = "";
+#   "Gtk/CanChangeAccels" = "";
+#   "Gtk/ColorPalette" = "";
+#   "Gtk/FontName" = "";
+#   "Gtk/MonospaceFontName" = "";
+#   "Gtk/IconSizes" = "";
+#   "Gtk/KeyThemeName" = "";
+#   "Gtk/MenuImages" = "";
+#   "Gtk/ButtonImages" = "";
+#   "Gtk/MenuBarAccel" = "";
+#   "Gtk/CursorThemeName" = "";
+#   "Gtk/CursorThemeSize" = "";
+#   "Gtk/DecorationLayout" = "icon,menu:minimize,maximize,close";
+#   "Gtk/DialogsUseHeader" = "";
+#   "Gtk/TitlebarMiddleClick" = "";
+#   "Gdk/WindowScalingFactor" = "";
+# };
 
 });
 }

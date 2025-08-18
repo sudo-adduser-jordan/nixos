@@ -1,0 +1,38 @@
+
+#   # laptop
+#   nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
+#     system = "x86_64-linux";
+#     modules = [
+#       inputs.home-manager.nixosModules.home-manager
+#       inputs.sops-nix.nixosModules.sops
+#       ./hosts/laptop/configuration.nix
+#     ];
+#     specialArgs = {
+#       inherit inputs primary-user;
+#     };
+#   };
+  
+#   # desktop
+#   nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
+#     system = "x86_64-linux";
+#     modules = [
+#       inputs.home-manager.nixosModules.home-manager
+#       inputs.sops-nix.nixosModules.sops
+#       ./hosts/desktop/configuration.nix
+#     ];
+#     specialArgs = {
+#       inherit inputs primary-user;
+#     };
+#   };
+
+
+
+# users.users.${specialArgs.guest} = {
+#     isNormalUser = true;
+#     description = specialArgs.guest;
+#     extraGroups = [ "networkmanager" "wheel" ];
+#     hashedPasswordFile = config.sops.secrets.passwd.path;
+#     packages = with pkgs; [
+#       # Add your packages here
+#     ];
+# };
