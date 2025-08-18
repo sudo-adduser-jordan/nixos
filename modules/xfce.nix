@@ -4,66 +4,34 @@ let background-image = "${pkgs.xfce.xfdesktop}/share/backgrounds/xfce/xfce-leave
 
 in 
 { # xfce
-
-services.xserver = {
-enable = true;
-
-desktopManager.xfce.enable = true;
-# desktopManager.xfce.noDesktop = false;
-# desktopManager.xfce.enableXfwm = true;
-
-displayManager.startx.enable = true;
-displayManager.lightdm.enable = true;
-# displayManager.lightdm.extraConfig = ''
+services.xserver.enable = true;
+services.xserver.desktopManager.xfce.enable = true;
+services.xserver.displayManager.startx.enable = true;
+services.xserver.displayManager.lightdm.enable = true;
+# services.xserver.displayManager.lightdm.extraConfig = ''
 # background = ${background-image}
 # '';
-# displayManager.lightdm.greeters.gtk.extraConfig = ''
+# services.xserver.displayManager.lightdm.greeters.gtk.extraConfig = ''
 # background = ${background-image}
 # '';
-
-xkb.layout = "us";
-xkb.variant = "";
-
-# exportConfiguration = true;
-excludePackages = with pkgs; [
-# xterm
-];
-
-};
+services.xserver.xkb.layout = "us";
+services.xserver.xkb.variant = "";
+# excludePackages = with pkgs; [ xterm ];
 
 # system
-environment.systemPackages = with pkgs; [
-
-];
-
-environment.xfce.excludePackages = with pkgs; [
-];
+environment.systemPackages = with pkgs; [ ];
+environment.xfce.excludePackages = with pkgs; [ ];
 
 # home
 users.users.${specialArgs.user}.packages = with pkgs; [
-
-# xfce.thunar
 # file-roller
 # orchis-theme     # gtk theme
 # paper-icon-theme # xfce icons
-# redshift         # blue light screen filter
-# vanilla-dmz      # cursor set by home-manager
 ];
-
 home-manager.users.${specialArgs.user} = { config, ... }: ({
-
-# home.pointerCursor = {
-    # name = "Vanilla-DMZ";
-    # package = pkgs.vanilla-dmz;
-    # size = 64;
-    # x11.enable = true;
-# };
-
 # default applications - helpers
 # home.file.".config/xfce4/helpers.rc".text = "TerminalEmulator=alacritty";
-
 home.file = {
-
 ".config/xfce4/terminal/accels.scm".text = ''
 ; xfce4-terminal GtkAccelMap rc-file         -*- scheme -*-
 ; this file is an automated accelerator map dump
@@ -151,35 +119,22 @@ ColorPalette=#45475a;#f38ba8;#a6e3a1;#f9e2af;#89b4fa;#f5c2e7;#94e2d5;#bac2de;#58
 '';
 };
 
-
-
-
-
-gtk = {
-enable = true;
-
-theme.name = "Adwaita-dark";
+gtk.enable = true;
+gtk.theme.name = "Adwaita-dark";
 # gtk.theme.gtk.package = pkgs.orchis-theme;
-
-iconTheme.name = "Adwaita-dark";
+gtk.iconTheme.name = "Adwaita-dark";
 # gtk.iconTheme.name = "Moradwita";
 # gtk.iconTheme.package = pkgs.moradwaita;
-
-# gtk3.extraConfig.Settings = ''
+# gtk.gtk3.extraConfig.Settings = ''
 # gtk-application-prefer-dark-theme = true
 # '';
-
-gtk4.extraConfig.Settings = ''
+gtk.gtk4.extraConfig.Settings = ''
 gtk-application-prefer-dark-theme = true
 '';
 
-};
 
-xdg.portal = {
-enable = true;
-extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-};
-    
+xdg.portal.enable = true;
+xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 # xdg.userDirs = {
 #     enable = true;
 #     createDirectories = false;
@@ -235,105 +190,108 @@ xfconf.settings.xfce4-keyboard-shortcuts = {
 "commands/custom/<Shift>space" = "xfce4-terminal";
 };
 
+
 xfconf.settings.xfce4-panel = {
 "configver" = 2;
+"panels/dark-mode" = true;
+"panels/panel-1/background-style" = 2;
+"panels/panel-1/enter-opacity" = 75;
+"panels/panel-1/leave-opacity" = 75;
+"panels/panel-1/icon-size" = 16;
+"panels/panel-1/length" = 100;
+"panels/panel-1/position" = "p=6;x=0;y=0";
+"panels/panel-1/position-locked" = true;
+"panels/panel-1/size" = 26;
+"panels/panel-1/plugin-ids" = [ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 ];
 
-"panels/0/dark-mode" = true;
-"panels/0/panel-1/position" = "p=6;x=0;y=0";
-"panels/0/panel-1/size" = 26;
-"panels/0/panel-1/background-style" = 1;
-"panels/0/panel-1/enter-opacity" = 75;
-"panels/0/panel-1/icon-size" = 0;
-"panels/0/panel-1/length" = 100;
+# 1
+"plugins/plugin-1" = "applicationsmenu";
+"plugins/plugin-1/show-button-title" = false;
+"plugins/plugin-1/show-generic-names" = true;
+"plugins/plugin-1/show-tooltips" = true;
+# "plugins/plugin-1/small" = false;
 
-"panels/0/panel-1/plugin-ids/0" = 15;
-"panels/0/panel-1/plugin-ids/1" = 11;
-"panels/0/panel-1/plugin-ids/2" = 2;
-"panels/0/panel-1/plugin-ids/3" = 3;
-"panels/0/panel-1/plugin-ids/4" = 4;
-"panels/0/panel-1/plugin-ids/5" = 5;
-"panels/0/panel-1/plugin-ids/6" = 6;
-"panels/0/panel-1/plugin-ids/7" = 7;
-"panels/0/panel-1/plugin-ids/8" = 8;
-"panels/0/panel-1/plugin-ids/9" = 9;
-"panels/0/panel-1/plugin-ids/10" = 10;
-"panels/0/panel-1/plugin-ids/11" = 12;
-"panels/0/panel-1/plugin-ids/12" = 13;
-"panels/0/panel-1/position-locked" = true;
-"panels/0/panel-1/leave-opacity" = 75;
+# 2
+"plugins/plugin-2" = "directorymenu";
+"plugins/plugin-2/base-directory" = "/home/user1";
 
-"plugins/plugin-2/grouping" = false;
-"plugins/plugin-2/expand" = true;
-"plugins/plugin-2/style" = 0;
-"plugins/plugin-2/flat-buttons" = false;
-"plugins/plugin-2/show-handle" = false;
-"plugins/plugin-2/show-labels" = false;
-"plugins/plugin-2/show-tooltips" = true;
-"plugins/plugin-2/window-scrolling" = false;
-
-"plugins/plugin-5/style" = 0;
-"plugins/plugin-5/rows" = 1;
-"plugins/plugin-5/expand" = true;
-
-"plugins/plugin-7/style" = 0;
-"plugins/plugin-7/enable-keyboard-shortcuts" = true;
-"plugins/plugin-7/digital-date-font" = "Sans Bold 10";
-"plugins/plugin-7/digital-layout" = 3;
-"plugins/plugin-7/digital-time-font" = "Sans Bold 10";
-"plugins/plugin-7/digital-time-format" = "%a %d %R";
-"plugins/plugin-7/timezone" = "UTC";
-
-"plugins/plugin-4/show-button-title" = false;
-"plugins/plugin-4/show-menu-icons" = true;
-"plugins/plugin-4/icon-size" = 0;
-"plugins/plugin-4/single-row" = false;
-"plugins/plugin-4/hide-new-items" = false;
-"plugins/plugin-4/square-icons" = true;
-"plugins/plugin-4/digital-date-format" = "%B %d, %Y";
-"plugins/plugin-4/digital-time-format" = "%I:%M %p";
-"plugins/plugin-4/mode" = 2;
-"plugins/plugin-4/timezone" = "America/Los_Angeles";
-
+# 3
+"plugins/plugin-3" = "tasklist";
 "plugins/plugin-3/expand" = true;
+"plugins/plugin-3/flat-buttons" = false;
+"plugins/plugin-3/grouping" = false;
+"plugins/plugin-3/show-handle" = false;
+"plugins/plugin-3/show-labels" = false;
+"plugins/plugin-3/show-tooltips" = true;
+"plugins/plugin-3/window-scrolling" = false;
 "plugins/plugin-3/style" = 0;
 
-"plugins/plugin-6/digital-date-font" = "Monospace 10";
-"plugins/plugin-6/digital-layout" = 3;
-"plugins/plugin-6/digital-time-font" = "Monospace 10";
+# 4
+"plugins/plugin-4" = "separator";
+"plugins/plugin-4/expand" = true;
+"plugins/plugin-4/style" = 0;
+
+# 5
+"plugins/plugin-5" = "separator";
+"plugins/plugin-5/expand" = true;
+"plugins/plugin-5/style" = 0;
+
+# 6
+"plugins/plugin-6" = "clock";
 "plugins/plugin-6/digital-time-format" = "%I:%M %p";
-"plugins/plugin-6/timezone" = "America/Los_Angeles";
-"plugins/plugin-6/mode" = 2;
-"plugins/plugin-6/show-week-numbers" = true;
 "plugins/plugin-6/digital-date-format" = "%B %d, %Y";
-"plugins/plugin-6/icon-size" = 0;
-"plugins/plugin-6/square-icons" = true;
 
-"plugins/plugin-9/enabled-keyboard-shortcuts" = true;
-"plugins/plugin-9/style" = 0;
+# 7
+"plugins/plugin-7" = "separator";
+"plugins/plugin-7/expand" = true;
+"plugins/plugin-7/style" = 0;
 
-"plugins/plugin-8/enable-keyboard-shortcuts" = true;
+# 8
+"plugins/plugin-8" = "separator";
+"plugins/plugin-8/expand" = true;
+"plugins/plugin-8/style" = 0;
 
-"plugins/plugin-10/style" = 0;
+# 9
+"plugins/plugin-9" = "systray";
+"plugins/plugin-9/icon-size" = 0;
+"plugins/plugin-9/square-icons" = true;
 
-"plugins/plugin-11/style" = 2;
+# 10
+"plugins/plugin-10" = "notification-plugin";
 
-"plugins/plugin-12" = "actions";
+# 11
+"plugins/plugin-11" = "separator";
+"plugins/plugin-11/style" = 0;
+"plugins/plugin-11/expand" = false;
 
+# 12
+"plugins/plugin-12" = "pulse-audio";
+"plugins/plugin-12/enable-keyboard-shortcuts" = true;
+
+# 13
+"plugins/plugin-13" = "separator";
 "plugins/plugin-13/style" = 0;
 "plugins/plugin-13/expand" = false;
 
-"plugins/plugin-15/launcher-show-name" = true;
-"plugins/plugin-15/menu-height" = 10000;
-"plugins/plugin-15/menu-width" = 10000;
-"plugins/plugin-15/view-mode" = 0;
-"plugins/plugin-15/position-categories-horizontal" = false;
-"plugins/plugin-15/position-categories-alternate" = true;
-"plugins/plugin-15/position-profile-alternate" = false;
-"plugins/plugin-15/profile-shape" = 2;
-"plugins/plugin-15/default-category" = 2;
-"plugins/plugin-15/recent/0" = "nixos-manual.desktop";
-"plugins/plugin-15/button-single-row" = true;
-"plugins/plugin-15/position-commands-alternate" = true;
+
+# 14
+"plugins/plugin-14" = "actions";
+"plugins/plugin-14/style" = 0;
+
+# 15
+"plugins/plugin-15" = "separator";
+"plugins/plugin-15/style" = 0;
+"plugins/plugin-15/expand" = false;
+
+# 16
+"plugins/plugin-16" = "power-manager-plugin";
+
+
+# 17
+"plugins/plugin-17" = "separator";
+"plugins/plugin-17/style" = 0;
+"plugins/plugin-17/expand" = false;
+
 };
 
 xfconf.settings.xfce4-power-manager = {

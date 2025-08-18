@@ -1,5 +1,5 @@
 { # nixos-rebuild dry-run --flake /home/user1/nixos --impure --show-trace
-description = "NixOS config flake";
+description = "nixos config flake";
 
 inputs = {
     #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";

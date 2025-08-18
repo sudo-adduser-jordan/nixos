@@ -4,25 +4,14 @@
 
 imports = [
 ./hardware-configuration.nix
-# ./modules/_all-systems.nix
 ./modules/xfce.nix
 ./modules/rofi.nix
-# ./modules/git.nix
-# ./modules/flatpak.nix
-# ./modules/gnupg.nix
-# ./modules/ssh.nix
-# ./modules/chromium.nix
-# ./modules/cups.nix
-# ./modules/firefox.nix
-# ./modules/pipewire.nix
-# ./modules/steam.nix
-# ./modules/direnv.nix
 ];
 
 # Bootloader
 boot.loader.systemd-boot.enable = true;
 boot.loader.efi.canTouchEfiVariables = true;
-# boot.kernelPackages = pkgs.linuxPackages_latest; # kernel version
+# boot.kernelPackages = pkgs.linuxPackages_latest; # kernel version i think
 
 # Networking
 networking.hostName = "computer1";
@@ -44,8 +33,8 @@ i18n.extraLocaleSettings = {
     LC_TIME = "en_US.UTF-8";
 };
 
-# Audio via Pipewire
-services.pulseaudio.enable = false;
+# audio 
+# services.pulseaudio.enable = false;
 security.rtkit.enable = true;
 services.pipewire = {
     enable = true;
@@ -55,22 +44,25 @@ services.pipewire = {
     #jack.enable = true;
 };
 
-# Home Manager
+# home manager
+home-manager.users.root = {
+    home.stateVersion = specialArgs.version;
+    # home.file = { "Pictures" = { source = ./Pictures; recursive = true; }; }; 
+};
 home-manager.users.${specialArgs.user} = {
     home.stateVersion = specialArgs.version;
     home.file = { "Pictures" = { source = ./Pictures; recursive = true; }; }; 
 };
-home-manager.users.root.home.stateVersion = specialArgs.version;
 
 users.users.${specialArgs.user} = {
     isNormalUser = true;
     description = specialArgs.user;
     extraGroups = [ "networkmanager" "wheel" ];
-    # hashedPasswordFile = config.sops.secrets.passwd.path;
     packages = with pkgs; [
     ];
 };
 
+# system
 environment.systemPackages = with pkgs; [
 rofi
 vscode
@@ -135,14 +127,11 @@ environment.shellAliases = {
     clean = "nix-collect-garbage";
     channels = "nix-channel --list";
     channels-update = "nix-channel --update";
-    # update = "nixos-rebuild switch --upgrade";
     rollback = "nixos-rebuild switch --rollback";
     generations-delete = "nix-env --delete-generations";
     generations = "nix-env -p /nix/var/nix/profiles/system --list-generations";
     switch-root = "nixos-rebuild switch";
-    # switch = "nixos-rebuild switch -I nixos-config=/home/${user}/nixos/configuration.nix";
-    # switch = "nixos-rebuild switch --flake /home/user1/nixos; # impure
-    # switch = "nixos-rebuild switch --flake ~/nixos; # pure
+    switch = "nixos-rebuild switch --flake /home/${specialArgs.user}/nixos/.";
 };
 
 # portals
