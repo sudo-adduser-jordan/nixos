@@ -53,59 +53,56 @@ alsa.support32Bit = true;
 pulse.enable = true;
 };
 
-users = {
 
-users.${specialArgs.user} = {
-    isNormalUser = true;
-    description = specialArgs.user;
-    extraGroups = [ "networkmanager" "wheel" ];
+
+users.users.${specialArgs.user} = {
+isNormalUser = true;
+description = specialArgs.user;
+extraGroups = [ "networkmanager" "wheel" ];
     # hashedPasswordFile = config.sops.secrets.passwd.path;
-    packages = with pkgs; [
-      # Add your packages here
-      rofi
-      vscode
+packages = with pkgs; [
+rofi
+vscode
 
-    gh
-    git
-    github-desktop
+gh
+git
+github-desktop
 
-    pnpm
-    nodejs_22
+pnpm
+nodejs_22
 
-    discord
-    librewolf
-    google-chrome
-    
-    libreoffice
-    
-    seahorse
-    gnome-keyring
-    
-    systemdgenie
-    kdePackages.ksystemlog
-    
-    xfce.xfce4-whiskermenu-plugin
+discord
+librewolf
+google-chrome
 
-    flatpak
-    xdg-utils
-    xdg-desktop-portal
-    xdg-desktop-portal-gtk
+libreoffice
 
-    icon-library
-    # nixos-icons
+seahorse
+gnome-keyring
 
-    theme-obsidian2
-    adwaita-icon-theme
-    morewaita-icon-theme
+systemdgenie
+kdePackages.ksystemlog
 
-    nerd-fonts.adwaita-mono
-    nerd-fonts.jetbrains-mono
-    
-    
-    ];
-};
+xfce.xfce4-whiskermenu-plugin
 
-# users.${specialArgs.guest} = {
+flatpak
+xdg-utils
+xdg-desktop-portal
+xdg-desktop-portal-gtk
+
+icon-library
+# nixos-icons
+
+theme-obsidian2
+adwaita-icon-theme
+morewaita-icon-theme
+
+nerd-fonts.adwaita-mono
+nerd-fonts.jetbrains-mono
+
+];};
+
+# users.users.${specialArgs.guest} = {
 #     isNormalUser = true;
 #     description = specialArgs.guest;
 #     extraGroups = [ "networkmanager" "wheel" ];
@@ -114,8 +111,6 @@ users.${specialArgs.user} = {
 #       # Add your packages here
 #     ];
 # };
-
-};
 
 # aliases
 environment.shellAliases = {
@@ -132,8 +127,6 @@ environment.shellAliases = {
     # switch = "nixos-rebuild switch --flake /home/user1/nixos; # impure
     # switch = "nixos-rebuild switch --flake ~/nixos; # pure
 };
-
-
 
   system.stateVersion = specialArgs.version;
 }
