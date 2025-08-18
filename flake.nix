@@ -14,11 +14,14 @@
 
 outputs = { self, nixpkgs, home-manager, ... } @ inputs:
 let
-  version = "25.05"; # can add multiple
-  host = "computer1"; # can add multiple
-  user = "user1";
-  user2 = "user2";
-  guest = "guest";
+    version = "25.05"; 
+
+    host = "computer1"; # can add multiple
+    user = "user1";
+    user2 = "user2";
+    guest = "guest";
+
+    timezone ="America/Los_Angeles";
 in
 {
   # Single system configuration
@@ -35,6 +38,7 @@ in
       inherit user2;
       inherit guest;
       inherit version;
+      inherit timezone;
     };
   };
 

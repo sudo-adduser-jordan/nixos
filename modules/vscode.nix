@@ -1,3 +1,5 @@
+# nix-prefetch-url "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/tal7aouy/vsextensions/theme/3.1.0/vspackage"
+
     # (vscode-with-extensions.override {
     # vscodeExtensions = with vscode-extensions; [
     #     bbenoist.nix

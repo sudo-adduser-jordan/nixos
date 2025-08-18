@@ -3,9 +3,8 @@
 let background-image = "${pkgs.xfce.xfdesktop}/share/backgrounds/xfce/xfce-leaves.svg";
 
 in 
-{
+{ # xfce
 
-# X11
 services.xserver = {
 enable = true;
 
@@ -52,17 +51,19 @@ xorg.xinit
 
 ];
 
-programs.thunar.plugins = with pkgs.xfce; [
-thunar-archive-plugin
-thunar-volman
-];
-
 environment.xfce.excludePackages = with pkgs; [
 # xfce.xfce4-appfinder
 # xfce.xfce4-taskmanager
 # xfce.xfce4-terminal
 ];
 
+programs.thunar.plugins = with pkgs.xfce; [
+thunar-archive-plugin
+thunar-volman
+];
+
+
+# home
 users.users.${specialArgs.user}.packages = with pkgs; [
 # file-roller
 # orchis-theme     # gtk theme
@@ -71,8 +72,6 @@ users.users.${specialArgs.user}.packages = with pkgs; [
 # vanilla-dmz      # cursor set by home-manager
 ];
 
-
-# home
 home-manager.users.${specialArgs.user} = { config, ... }: ({
 
 home.pointerCursor = {
@@ -123,10 +122,12 @@ extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
 xfconf.enable = true;
 
-xfconf.settings.keyboards = { "Default/Numlock" = false; };
+xfconf.settings.keyboards = { 
+"Default/Numlock" = false; 
+};
 
 xfconf.settings.xfce4-notifyd = {
-    date-time-custom-format = "%a %H:%M:%S";
+"date-time-custom-format" = "%a %H:%M:%S";
 };
 
 xfconf.settings.thunar = {
@@ -313,6 +314,6 @@ xfconf.settings.xsettings = {
 "Net/IconThemeName" = "Paper";
 "Net/ThemeName" = "Orchis-Orange-Dark-Compact";
 };
-});
 
+});
 }
