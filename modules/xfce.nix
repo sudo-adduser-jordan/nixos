@@ -259,12 +259,12 @@ xfconf.settings.xfce4-desktop = {
 #   "last/window-width" = 672;
 #   "last/window-height" = 547;
   "backdrop/screen0/monitorDP-1/workspace0/last-image" = "/home/user1/Pictures/plants.jpg";
-  "desktop-icons/style" = 2;
+  "desktop-icons/style" = 1;
   "desktop-icons/show-hidden-files" = false;
-  "file-icons/show-filesystem" = false;
-  "file-icons/show-trash" = false;
-  "file-icons/show-removable" = false;
-  "file-icons/show-home" = false;
+  "desktop-icons/file-icons/show-filesystem" = false;
+  "desktop-icons/file-icons/show-trash" = false;
+  "desktop-icons/file-icons/show-removable" = false;
+  "desktop-icons/file-icons/show-home" = false;
   "desktop-icons/show-thumbnails" = false;
 };
 
@@ -274,6 +274,7 @@ xfconf.settings.xfce4-keyboard-shortcuts = {
 "xfwm4/custom/<Super>Right" = "tile_right_key";
 "xfwm4/custom/<Super>Left" = "tile_left_key";
 "xfwm4/custom/<Primary>q" = "close_window_key";
+"commands/custom/<Primary>g" = "minimize_window_key";
 "commands/custom/<Primary>space" = "rofi -show drun";
 };
 
