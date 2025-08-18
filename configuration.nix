@@ -3,7 +3,7 @@
 { nixpkgs.config.allowUnfree = true; 
 
 imports = [
-# ./hardware-configuration.nix
+./hardware-configuration.nix
 # ./modules/_all-systems.nix
 ./modules/xfce.nix
 ./modules/rofi.nix
