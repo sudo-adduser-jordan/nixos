@@ -45,7 +45,7 @@ xfce.xfce4-genmon-plugin
 xfce.xfce4-netload-plugin
 xfce.xfce4-power-manager
 xfce.xfce4-pulseaudio-plugin
-xfce.xfce4-weather-plugin
+# xfce.xfce4-weather-plugin
 xfce.xfwm4-themes
 xorg.xinit
 
@@ -81,6 +81,147 @@ home.pointerCursor = {
     x11.enable = true;
 };
 home.file.".config/xfce4/helpers.rc".text = "TerminalEmulator=alacritty";
+home.file = {
+".config/xfce4/desktop/accels.scm".text = ''
+; xfdesktop GtkAccelMap rc-file         -*- scheme -*-
+; this file is an automated accelerator map dump
+;
+; (gtk_accel_path "<Actions>/XfceDesktop/primary-menu-2" "Menu")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/open-with-other" "")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/activate-3" "Return")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/properties-3" "<Alt>KP_Enter")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/trash" "Delete")
+; (gtk_accel_path "<Actions>/XfceDesktop/next-background" "")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/cut-2" "")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/cut" "<Primary>x")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/unselect-all" "Escape")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/copy-2" "<Primary>Insert")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/activate" "space")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/activate-2" "KP_Space")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/open" "<Primary>o")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/select-all" "<Primary>a")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/properties-2" "<Alt>ISO_Enter")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/empty-trash" "")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/open-trash" "")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/trash-3" "")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/properties" "<Alt>Return")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/copy" "<Primary>c")
+; (gtk_accel_path "<Actions>/XfceDesktop/reload-2" "Reload")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/delete-3" "")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/trash-2" "KP_Delete")
+; (gtk_accel_path "<Actions>/XfceDesktop/reload" "<Primary>r")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/paste-into-folder" "")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/paste-2" "<Shift>Insert")
+; (gtk_accel_path "<Actions>/XfceDesktop/secondary-menu" "<Primary><Shift>F10")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/delete-2" "<Shift>KP_Delete")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/toggle-cursor-2" "<Primary>KP_Space")
+; (gtk_accel_path "<Actions>/XfceDesktop/reload-1" "F5")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/open-filesystem" "")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/activate-5" "KP_Enter")
+; (gtk_accel_path "<Actions>/XfceDesktop/primary-menu" "<Shift>F10")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/create-document" "")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/create-folder" "<Primary><Shift>n")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/toggle-cursor" "<Primary>space")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/toggle-show-hidden" "<Primary>h")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/open-home" "<Alt>Home")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/activate-4" "ISO_Enter")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/delete" "<Shift>Delete")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/paste" "<Primary>v")
+; (gtk_accel_path "<Actions>/XfdesktopFileIconManager/rename" "F2")
+; (gtk_accel_path "<Actions>/XfdesktopIconView/arrange-icons" "")
+; (gtk_accel_path "<Actions>/XfceDesktop/secondary-menu-2" "<Primary>Menu")
+'';
+
+".config/xfce4/terminal/accels.scm".text = ''
+; xfce4-terminal GtkAccelMap rc-file         -*- scheme -*-
+; this file is an automated accelerator map dump
+;
+; (gtk_accel_path "<Actions>/terminal-window/copy-html" "")
+; (gtk_accel_path "<Actions>/terminal-window/new-tab" "<Primary><Shift>t")
+; (gtk_accel_path "<Actions>/terminal-window/reset" "")
+; (gtk_accel_path "<Actions>/terminal-window/next-tab" "<Primary>Page_Down")
+; (gtk_accel_path "<Actions>/terminal-window/search-prev" "")
+; (gtk_accel_path "<Actions>/terminal-window/close-tab" "<Primary><Shift>w")
+; (gtk_accel_path "<Actions>/terminal-window/help-menu" "")
+; (gtk_accel_path "<Actions>/terminal-window/tabs-menu" "")
+; (gtk_accel_path "<Actions>/terminal-window/zoom-in-alt" "<Primary>KP_Add")
+; (gtk_accel_path "<Actions>/terminal-widget/shift-pagedown" "<Shift>Page_Down")
+; (gtk_accel_path "<Actions>/terminal-window/show-toolbar" "")
+; (gtk_accel_path "<Actions>/terminal-window/move-tab-right" "<Primary><Shift>Page_Down")
+; (gtk_accel_path "<Actions>/terminal-window/zoom-in" "<Primary>plus")
+; (gtk_accel_path "<Actions>/terminal-window/fullscreen" "F11")
+; (gtk_accel_path "<Actions>/terminal-window/about" "")
+; (gtk_accel_path "<Actions>/terminal-window/paste-selection" "")
+(gtk_accel_path "<Actions>/terminal-window/paste" "<Primary>v")
+; (gtk_accel_path "<Actions>/terminal-widget/shift-down" "<Shift>Down")
+; (gtk_accel_path "<Actions>/terminal-window/new-window" "<Primary><Shift>n")
+; (gtk_accel_path "<Actions>/terminal-window/edit-menu" "")
+; (gtk_accel_path "<Actions>/terminal-window/goto-tab-9" "<Alt>9")
+; (gtk_accel_path "<Actions>/terminal-window/reset-and-clear" "")
+; (gtk_accel_path "<Actions>/terminal-window/toggle-menubar" "F10")
+; (gtk_accel_path "<Actions>/terminal-window/paste-selection-alt" "")
+; (gtk_accel_path "<Actions>/terminal-window/set-title-color" "")
+; (gtk_accel_path "<Actions>/terminal-window/zoom-reset" "<Primary>0")
+; (gtk_accel_path "<Actions>/terminal-window/goto-tab-8" "<Alt>8")
+; (gtk_accel_path "<Actions>/terminal-window/detach-tab" "")
+(gtk_accel_path "<Actions>/terminal-window/copy" "<Primary>c")
+; (gtk_accel_path "<Actions>/terminal-window/show-borders" "")
+; (gtk_accel_path "<Actions>/terminal-window/undo-close-tab" "<Primary><Shift>d")
+; (gtk_accel_path "<Actions>/terminal-window/open-folder" "")
+; (gtk_accel_path "<Actions>/terminal-window/select-all" "<Primary><Shift>a")
+; (gtk_accel_path "<Actions>/terminal-window/search-next" "")
+; (gtk_accel_path "<Actions>/terminal-window/goto-tab-7" "<Alt>7")
+; (gtk_accel_path "<Actions>/terminal-window/show-menubar" "")
+; (gtk_accel_path "<Actions>/terminal-window/move-tab-left" "<Primary><Shift>Page_Up")
+; (gtk_accel_path "<Actions>/terminal-window/zoom-reset-alt" "<Primary>KP_0")
+; (gtk_accel_path "<Actions>/terminal-window/read-only" "")
+; (gtk_accel_path "<Actions>/terminal-window/file-menu" "")
+; (gtk_accel_path "<Actions>/terminal-window/zoom-out-alt" "<Primary>KP_Subtract")
+; (gtk_accel_path "<Actions>/terminal-window/search" "<Primary><Shift>f")
+; (gtk_accel_path "<Actions>/terminal-window/goto-tab-6" "<Alt>6")
+; (gtk_accel_path "<Actions>/terminal-window/preferences" "")
+; (gtk_accel_path "<Actions>/terminal-window/prev-tab" "<Primary>Page_Up")
+; (gtk_accel_path "<Actions>/terminal-window/set-title" "<Primary><Shift>s")
+; (gtk_accel_path "<Actions>/terminal-window/terminal-menu" "")
+; (gtk_accel_path "<Actions>/terminal-window/copy-input" "")
+; (gtk_accel_path "<Actions>/terminal-window/goto-tab-5" "<Alt>5")
+; (gtk_accel_path "<Actions>/terminal-window/contents" "F1")
+; (gtk_accel_path "<Actions>/terminal-window/paste-alt" "<Primary><Shift>Insert")
+; (gtk_accel_path "<Actions>/terminal-widget/shift-up" "<Shift>Up")
+; (gtk_accel_path "<Actions>/terminal-window/goto-tab-4" "<Alt>4")
+; (gtk_accel_path "<Actions>/terminal-window/scroll-on-output" "")
+; (gtk_accel_path "<Actions>/terminal-window/zoom-out" "<Primary>minus")
+; (gtk_accel_path "<Actions>/terminal-widget/shift-pageup" "<Shift>Page_Up")
+; (gtk_accel_path "<Actions>/terminal-window/zoom-menu" "")
+; (gtk_accel_path "<Actions>/terminal-window/close-window" "<Primary><Shift>q")
+; (gtk_accel_path "<Actions>/terminal-window/goto-tab-3" "<Alt>3")
+; (gtk_accel_path "<Actions>/terminal-window/last-active-tab" "")
+; (gtk_accel_path "<Actions>/terminal-window/save-contents" "")
+; (gtk_accel_path "<Actions>/terminal-window/goto-tab-2" "<Alt>2")
+; (gtk_accel_path "<Actions>/terminal-window/close-other-tabs" "")
+; (gtk_accel_path "<Actions>/terminal-window/view-menu" "")
+; (gtk_accel_path "<Actions>/terminal-window/goto-tab-1" "<Alt>1")
+'';
+# https://github.com/catppuccin/xfce4-terminal
+ ".local/share/xfce4/terminal/colorschemes/catppuccin-mocha.theme".text = ''
+      [Scheme]
+      Name=Catppuccin-Mocha
+      ColorCursor=#f5e0dc
+      ColorCursorForeground=#11111b
+      ColorCursorUseDefault=FALSE
+      ColorForeground=#cdd6f4
+      ColorBackground=#1e1e2e
+      ColorSelectionBackground=#585b70
+      ColorSelection=#cdd6f4
+      ColorSelectionUseDefault=FALSE
+      TabActivityColor=#fab387
+      ColorPalette=#45475a;#f38ba8;#a6e3a1;#f9e2af;#89b4fa;#f5c2e7;#94e2d5;#bac2de;#585b70;#f38ba8;#a6e3a1;#f9e2af;#89b4fa;#f5c2e7;#94e2d5;#a6adc8
+'';
+};
+
+
+
+
 
 gtk = {
 enable = true;
@@ -136,30 +277,19 @@ xfconf.settings.thunar = {
 };
 
 xfconf.settings.xfce4-desktop = {
-# "backdrop/screen0/monitor0/workspace0/color-style" = 0;
-# "backdrop/screen0/monitor0/workspace0/image-style" = 5;
-# "backdrop/screen0/monitor0/workspace0/last-image" = background-image;
-# "backdrop/screen0/monitor0/workspace1/color-style" = 0;
-# "backdrop/screen0/monitor0/workspace1/image-style" = 5;
-# "backdrop/screen0/monitor0/workspace1/last-image" = background-image;
-# "backdrop/screen0/monitorDP-1/workspace0/color-style" = 0;
-# "backdrop/screen0/monitorDP-1/workspace0/image-style" = 5;
-# "backdrop/screen0/monitorDP-1/workspace0/last-image" = background-image;
-# "backdrop/screen0/monitorDP-1/workspace1/color-style" = 0;
-# "backdrop/screen0/monitorDP-1/workspace1/image-style" = 5;
-# "backdrop/screen0/monitorDP-1/workspace1/last-image" = background-image;
-# "backdrop/screen0/monitorDP-2/workspace0/color-style" = 0;
-# "backdrop/screen0/monitorDP-2/workspace0/image-style" = 5;
-# "backdrop/screen0/monitorDP-2/workspace0/last-image" = background-image;
-# "backdrop/screen0/monitorDP-2/workspace1/color-style" = 0;
-# "backdrop/screen0/monitorDP-2/workspace1/image-style" = 5;
-# "backdrop/screen0/monitorDP-2/workspace1/last-image" = background-image;
-# "desktop-icons/show-thumbnails" = false;
-# "desktop-icons/style" = 0;
-# "windowlist-menu/show" = false;
+# "backdrop/screen0/monitor0/workspace0/last-image" = "/etc/nixos/plants.jpg";
+#   "last/window-width" = 672;
+#   "last/window-height" = 547;
+  "backdrop/screen0/monitorDP-1/workspace0/last-image" = "/home/user1/Pictures/plants.jpg";
+  "desktop-icons/style" = 2;
+  "desktop-icons/show-hidden-files" = false;
+  "file-icons/show-filesystem" = false;
+  "file-icons/show-trash" = false;
+  "file-icons/show-removable" = false;
+  "file-icons/show-home" = false;
+  "desktop-icons/show-thumbnails" = false;
 };
 
-# "backdrop/screen0/monitor0/workspace0/last-image" = "/etc/nixos/plants.jpg";
 xfconf.settings.xfce4-keyboard-shortcuts = {
 "xfwm4/custom/<Super>Up" = "maximize_window_key";
 "xfwm4/custom/<Super>Down" = "tile_down_key";
@@ -169,84 +299,88 @@ xfconf.settings.xfce4-keyboard-shortcuts = {
 };
 
 xfconf.settings.xfce4-panel = {
-# "configver" = 2;
-# "panels/dark-mode" = true;
-# "panels/panel-1/background-style" = 2;
-# "panels/panel-1/enter-opacity" = 100;
-# "panels/panel-1/icon-size" = 16;
-# "panels/panel-1/length" = 100;
-# "panels/panel-1/plugin-ids" = [1 2 3 4 5 6 7 8 9 10 11 12 13];
-# "panels/panel-1/position" = "p=6;x=0;y=0";
-# "panels/panel-1/position-locked" = true;
-# "panels/panel-1/size" = 26;
-# "plugins/plugin-1" = "tasklist";
-# "plugins/plugin-1/flat-buttons" = false;
-# "plugins/plugin-1/grouping" = false;
-# "plugins/plugin-1/show-handle" = false;
-# "plugins/plugin-1/show-labels" = true;
-# "plugins/plugin-1/show-tooltips" = false;
-# "plugins/plugin-1/window-scrolling" = false;
-# "plugins/plugin-2" = "separator";
-# "plugins/plugin-2/expand" = true;
-# "plugins/plugin-2/style" = 0;
-# "plugins/plugin-3" = "netload";
-# "plugins/plugin-4" = "genmon";
-# "plugins/plugin-4/command" = "freemem";
-# "plugins/plugin-4/enable-single-row" = true;
-# "plugins/plugin-4/font" = "Sans 10";
-# "plugins/plugin-4/style" = 0;
-# "plugins/plugin-4/text" = "free memory";
-# "plugins/plugin-4/update-period" = 30000;
-# "plugins/plugin-4/use-label" = false;
-# "plugins/plugin-5" = "pager";
-# "plugins/plugin-5/rows" = 1;
-# "plugins/plugin-6" = "weather";
-# "plugins/plugin-6/cache-max-age" = 172800;
-# "plugins/plugin-6/forecast/days" = 5;
-# "plugins/plugin-6/forecast/layout" = 1;
-# "plugins/plugin-6/labels/label0" = 3;
-# "plugins/plugin-6/location/latitude" = "30.000";
-# "plugins/plugin-6/location/longitude" = "-30.000";
-# "plugins/plugin-6/location/name" = "My Secret Location";
-# "plugins/plugin-6/msl" = 57;
-# "plugins/plugin-6/offset" = "-04:00";
-# "plugins/plugin-6/power-saving" = true;
-# "plugins/plugin-6/round" = true;
-# "plugins/plugin-6/scrollbox/animate" = "2";
-# "plugins/plugin-6/scrollbox/color" = "rgba(0,0,0,0)";
-# "plugins/plugin-6/scrollbox/lines" = 1;
-# "plugins/plugin-6/scrollbox/show" = true;
-# "plugins/plugin-6/scrollbox/use-color" = false;
-# "plugins/plugin-6/single-row" = true;
-# "plugins/plugin-6/timezone" = "American/New_York";
-# "plugins/plugin-6/tooltip-style" = 1;
-# "plugins/plugin-6/units/altitude" = 1;
-# "plugins/plugin-6/units/apparent-temperature" = 0;
-# "plugins/plugin-6/units/precipitation" = 1;
-# "plugins/plugin-6/units/pressure" = 0;
-# "plugins/plugin-6/units/temperature" = 1;
-# "plugins/plugin-6/units/windspeed" = 1;
-# "plugins/plugin-7" = "pulseaudio";
-# "plugins/plugin-7/enable-keyboard-shortcuts" = true;
-# "plugins/plugin-8" = "power-manager-plugin";
-# "plugins/plugin-9" = "systray";
-# "plugins/plugin-9/square-items" = true;
-# "plugins/plugin-10" = "notification-plugin";
-# "plugins/plugin-11" = "clock";
-# "plugins/plugin-11/digital-date-font" = "Sans Bold 10";
-# "plugins/plugin-11/digital-layout" = 3;
-# "plugins/plugin-11/digital-time-font" = "Sans Bold 10";
-# "plugins/plugin-11/digital-time-format" = "%a %d %R";
-# "plugins/plugin-11/timezone" = "UTC";
-# "plugins/plugin-12" = "clock";
-# "plugins/plugin-12/digital-date-font" = "Sans Bold 10";
-# "plugins/plugin-12/digital-layout" = 3;
-# "plugins/plugin-12/digital-time-font" = "Sans Bold 10";
-# "plugins/plugin-12/digital-time-format" = " %R";
-# "plugins/plugin-12/mode" = 2;
-# "plugins/plugin-12/tooltip-format" = "%x";
-# "plugins/plugin-13" = "separator";
-# "plugins/plugin-13/style" = 0;
+"panels/0/dark-mode" = true;
+"panels/0/panel-1/position" = "p=6;x=0;y=0";
+"panels/0/panel-1/size" = 26;
+"panels/0/panel-1/background-style" = 1;
+"panels/0/panel-1/enter-opacity" = 75;
+"panels/0/panel-1/icon-size" = 0;
+"panels/0/panel-1/length" = 100;
+"panels/0/panel-1/plugin-ids/0" = 15;
+"panels/0/panel-1/plugin-ids/1" = 11;
+"panels/0/panel-1/plugin-ids/2" = 2;
+"panels/0/panel-1/plugin-ids/3" = 3;
+"panels/0/panel-1/plugin-ids/4" = 4;
+"panels/0/panel-1/plugin-ids/5" = 5;
+"panels/0/panel-1/plugin-ids/6" = 6;
+"panels/0/panel-1/plugin-ids/7" = 7;
+"panels/0/panel-1/plugin-ids/8" = 8;
+"panels/0/panel-1/plugin-ids/9" = 9;
+"panels/0/panel-1/plugin-ids/10" = 10;
+"panels/0/panel-1/plugin-ids/11" = 12;
+"panels/0/panel-1/plugin-ids/12" = 13;
+"panels/0/panel-1/position-locked" = true;
+"panels/0/panel-1/leave-opacity" = 75;
+"plugins/plugin-2/grouping" = false;
+"plugins/plugin-2/expand" = true;
+"plugins/plugin-2/style" = 0;
+"plugins/plugin-2/flat-buttons" = false;
+"plugins/plugin-2/show-handle" = false;
+"plugins/plugin-2/show-labels" = false;
+"plugins/plugin-2/show-tooltips" = true;
+"plugins/plugin-2/window-scrolling" = false;
+"plugins/plugin-5/style" = 0;
+"plugins/plugin-5/rows" = 1;
+"plugins/plugin-5/expand" = true;
+"plugins/plugin-7/style" = 0;
+"plugins/plugin-7/enable-keyboard-shortcuts" = true;
+"plugins/plugin-7/digital-date-font" = "Sans Bold 10";
+"plugins/plugin-7/digital-layout" = 3;
+"plugins/plugin-7/digital-time-font" = "Sans Bold 10";
+"plugins/plugin-7/digital-time-format" = "%a %d %R";
+"plugins/plugin-7/timezone" = "UTC";
+"plugins/plugin-4/show-button-title" = false;
+"plugins/plugin-4/show-menu-icons" = true;
+"plugins/plugin-4/icon-size" = 0;
+"plugins/plugin-4/single-row" = false;
+"plugins/plugin-4/hide-new-items" = false;
+"plugins/plugin-4/square-icons" = true;
+"plugins/plugin-4/digital-date-format" = "%B %d, %Y";
+"plugins/plugin-4/digital-time-format" = "%I:%M %p";
+"plugins/plugin-4/mode" = 2;
+"plugins/plugin-4/timezone" = "America/Los_Angeles";
+"plugins/plugin-3/expand" = true;
+"plugins/plugin-3/style" = 0;
+"plugins/plugin-6/digital-date-font" = "Monospace 10";
+"plugins/plugin-6/digital-layout" = 3;
+"plugins/plugin-6/digital-time-font" = "Monospace 10";
+"plugins/plugin-6/digital-time-format" = "%I:%M %p";
+"plugins/plugin-6/timezone" = "America/Los_Angeles";
+"plugins/plugin-6/mode" = 2;
+"plugins/plugin-6/show-week-numbers" = true;
+"plugins/plugin-6/digital-date-format" = "%B %d, %Y";
+"plugins/plugin-6/icon-size" = 0;
+"plugins/plugin-6/square-icons" = true;
+"plugins/plugin-9/enabled-keyboard-shortcuts" = true;
+"plugins/plugin-9/style" = 0;
+"plugins/plugin-8/enable-keyboard-shortcuts" = true;
+"plugins/plugin-10/style" = 0;
+"plugins/plugin-11/style" = 2;
+"plugins/plugin-12" = "actions";
+"plugins/plugin-13/style" = 0;
+"plugins/plugin-13/expand" = false;
+"plugins/plugin-15/launcher-show-name" = true;
+"plugins/plugin-15/menu-height" = 10000;
+"plugins/plugin-15/menu-width" = 10000;
+"plugins/plugin-15/view-mode" = 0;
+"plugins/plugin-15/position-categories-horizontal" = false;
+"plugins/plugin-15/position-categories-alternate" = true;
+"plugins/plugin-15/position-profile-alternate" = false;
+"plugins/plugin-15/profile-shape" = 2;
+"plugins/plugin-15/default-category" = 2;
+"plugins/plugin-15/recent/0" = "nixos-manual.desktop";
+"plugins/plugin-15/button-single-row" = true;
+"plugins/plugin-15/position-commands-alternate" = true;
 };
 
 xfconf.settings.xfce4-power-manager = {
@@ -257,6 +391,18 @@ xfconf.settings.xfce4-power-manager = {
 # "xfce4-power-manager/dpms-on-ac-sleep" = 60;
 # "xfce4-power-manager/dpms-on-battery-off" = 0;
 # "xfce4-power-manager/dpms-on-battery-sleep" = 35;
+};
+
+xfconf.settings.xfce4-terminal = {
+  "misc-menubar-default" = false;
+  "misc-default-geometry" = "91x35";
+  "font-use-system" = false;
+  "font-name" = "Monospace 12";
+  "misc-show-unsafe-paste-dialog" = false;
+  "misc-confirm-close" = false;
+  "misc-maximize-default" = false;
+  "background-mode" = "TERMINAL_BACKGROUND_TRANSPARENT";
+  "background-darkness" = 0.5;
 };
 
 xfconf.settings.xfce4-screensaver = {
@@ -275,44 +421,119 @@ xfconf.settings.xfce4-session = {
 };
 
 xfconf.settings.xfwm4 = {
-# "general/button_layout" = "O|HMC"; # titlebar minimize/maximize/close
-# "general/focus_delay" = 0;
-# "general/mousewheel_rollup" = false;
-# "general/move_opacity" = 100;
-# "general/raise_delay" = 0;
-# "general/title_font" = "Sans Bold 9";
-# "general/use_compositing" = true;
-# "general/wrap_cycle" = true;
-# "general/wrap_windows" = true;
-# "general/wrap_workspaces" = false;
-# "general/workspace_count" = 2;
-# "general/workspace_names" = [ "1" "2" ];
+  "general/activate_action" = "bring";
+  "general/borderless_maximize" = true;
+  "general/box_move" = false;
+  "general/box_resize" = false;
+  "general/button_layout" = "O|SHMC";
+  "general/button_offset" = 0;
+  "general/button_spacing" = 0;
+  "general/click_to_focus" = true;
+  "general/cycle_apps_only" = false;
+  "general/cycle_draw_frame" = true;
+  "general/cycle_raise" = true;
+  "general/cycle_hidden" = true;
+  "general/cycle_minimum" = true;
+  "general/cycle_minimized" = true;
+  "general/cycle_preview" = true;
+  "general/cycle_tabwin_mode" = 1;
+  "general/cycle_workspaces" = true;
+  "general/double_click_action" = "maximize";
+  "general/double_click_distance" = 5;
+  "general/double_click_time" = 250;
+  "general/easy_click" = "Alt";
+  "general/focus_delay" = 250;
+  "general/focus_hint" = true;
+  "general/focus_new" = true;
+  "general/frame_opacity" = 100;
+  "general/frame_border_top" = 0;
+  "general/full_width_title" = true;
+  "general/horiz_scroll_opacity" = false;
+  "general/inactive_opacity" = 100;
+  "general/maximized_offset" = 0;
+  "general/mousewheel_rollup" = true;
+  "general/move_opacity" = 100;
+  "general/placement_mode" = "center";
+  "general/placement_ratio" = 20;
+  "general/popup_opacity" = 100;
+  "general/prevent_focus_stealing" = false;
+  "general/raise_delay" = 250;
+  "general/raise_on_click" = true;
+  "general/raise_on_focus" = false;
+  "general/raise_with_any_button" = true;
+  "general/repeat_urgent_blink" = false;
+  "general/resize_opacity" = 100;
+  "general/scroll_workspaces" = false;
+  "general/shadow_delta_height" = 0;
+  "general/shadow_delta_width" = 0;
+  "general/shadow_delta_x" = 0;
+  "general/shadow_delta_y" = -3;
+  "general/shadow_opacity" = 50;
+  "general/show_app_icon" = false;
+  "general/show_dock_shadow" = true;
+  "general/show_frame_shadow" = true;
+  "general/show_popup_shadow" = false;
+  "general/snap_resist" = false;
+  "general/snap_to_border" = true;
+  "general/snap_to_windows" = false;
+  "general/snap_width" = 10;
+  "general/vblank_mode" = "auto";
+  "general/theme" = "Default";
+  "general/tile_on_move" = true;
+  "general/title_alignment" = "center";
+  "general/title_font" = "Sans Bold 9";
+  "general/title_horizontal_offset" = 0;
+  "general/titleless_maximize" = false;
+  "general/title_shadow_active" = "false";
+  "general/title_shadow_inactive" = "false";
+  "general/title_vertical_offset_active" = 0;
+  "general/title_vertical_offset_inactive" = 0;
+  "general/toggle_workspaces" = false;
+  "general/unredirect_overlays" = true;
+  "general/urgent_blink" = false;
+  "general/use_compositing" = true;
+  "general/workspace_count" = 1;
+  "general/wrap_cycle" = true;
+  "general/wrap_layout" = true;
+  "general/wrap_resistance" = 10;
+  "general/wrap_windows" = false;
+  "general/wrap_workspaces" = false;
+  "general/zoom_desktop" = true;
+  "general/zoom_pointer" = true;
+  "general/workspace_names/0" = "Workspace 1";
 };
 
 xfconf.settings.xsettings = {
-# "Gdk/WindowScalingFactor" = 1;
-# "Gtk/ButtonImages" = false;
-# "Gtk/CanChangeAccels" = false;
-# "Gtk/ColorPalette" = "black:white:gray50:red:purple:blue:light blue:green:yellow:orange:lavender:brown:goldenrod4:dodger blue:pink:light green:gray10:gray30:gray75:gray90";
-# "Gtk/CursorThemeName" = "Vanilla-DMZ";
-# "Gtk/CursorThemeSize" = 16;
-# "Gtk/DecorationLayout" = "menu:minimize,maximize,close";
-# "Gtk/DialogsUseHeader" = false;
-# "Gtk/FontName" = "Sans 10";
-# "Gtk/MenuImages" = "1";
-# "Gtk/MonospaceFontName" = "Monospace 10";
-# "Gtk/TitlebarMiddleClick" = "lower";
-# "Gtk/ToolbarIconSize" = 3;
-# "Gtk/ToolbarStyle" = "icons";
-# "Net/CursorBlink" = true;
-# "Net/CursorBlinkTime" = 1200;
-# "Net/DndDragThreshold" = 8;
-# "Net/DoubleClickDistance" = 5;
-# "Net/DoubleClickTime" = 400;
-# "Net/EnableEventSounds" = false;
-# "Net/EnableInputFeedbackSounds" = false;
-# "Net/IconThemeName" = "Paper";
-# "Net/ThemeName" = "Orchis-Orange-Dark-Compact";
+  "Net/ThemeName" = "Adwaita-dark";
+  "Net/IconThemeName" = "MoreWaita";
+  "Net/DoubleClickTime" = "";
+  "Net/DoubleClickDistance" = "";
+  "Net/DndDragThreshold" = "";
+  "Net/CursorBlink" = "";
+  "Net/CursorBlinkTime" = "";
+  "Net/SoundThemeName" = "";
+  "Net/EnableEventSounds" = "";
+  "Net/EnableInputFeedbackSounds" = "";
+  "Xft/DPI" = "";
+  "Xft/Antialias" = "";
+  "Xft/Hinting" = "";
+  "Xft/HintStyle" = "";
+  "Xft/RGBA" = "";
+  "Gtk/CanChangeAccels" = "";
+  "Gtk/ColorPalette" = "";
+  "Gtk/FontName" = "";
+  "Gtk/MonospaceFontName" = "";
+  "Gtk/IconSizes" = "";
+  "Gtk/KeyThemeName" = "";
+  "Gtk/MenuImages" = "";
+  "Gtk/ButtonImages" = "";
+  "Gtk/MenuBarAccel" = "";
+  "Gtk/CursorThemeName" = "";
+  "Gtk/CursorThemeSize" = "";
+  "Gtk/DecorationLayout" = "icon,menu:minimize,maximize,close";
+  "Gtk/DialogsUseHeader" = "";
+  "Gtk/TitlebarMiddleClick" = "";
+  "Gdk/WindowScalingFactor" = "";
 };
 
 });
