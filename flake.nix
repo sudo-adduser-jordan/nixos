@@ -29,7 +29,7 @@ in
     system = "x86_64-linux";
     modules = [
       inputs.home-manager.nixosModules.home-manager
-      /home/${user}/nixos/config.nix # main configuration
+      /home/${user}/nixos/configuration.nix # main configuration
     ];
     specialArgs = {
       inherit inputs;
