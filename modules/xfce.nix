@@ -2,7 +2,8 @@
 
 let background-image = "${pkgs.xfce.xfdesktop}/share/backgrounds/xfce/xfce-leaves.svg";
 
-in {
+in 
+{
  
   environment.systemPackages = with pkgs; [
     # Shell, window manager and x11 packages need to be installed at the
@@ -291,7 +292,7 @@ in {
   };
 
   users.users.${specialArgs.user}.packages = with pkgs; [
-    gnome.file-roller
+    file-roller
     orchis-theme     # gtk theme
     paper-icon-theme # xfce icons
     redshift         # blue light screen filter
@@ -313,5 +314,5 @@ in {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
-  
+
 }

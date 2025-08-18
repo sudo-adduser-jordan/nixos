@@ -3,8 +3,8 @@
   description = "NixOS config flake";
 
   inputs = {
-    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
@@ -26,10 +26,7 @@ in
     system = "x86_64-linux";
     modules = [
       inputs.home-manager.nixosModules.home-manager
-    #   ./hosts/${host}/configuration.nix
-    #   ./home/${user}/nixos/configuration.nix
-     "/home/user1/nixos/config.nix"
-    #   ./config.nix
+      /home/${user}/nixos/config.nix # main configuration
     ];
     specialArgs = {
       inherit inputs;
