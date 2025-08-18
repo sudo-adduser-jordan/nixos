@@ -1,6 +1,6 @@
 { config, pkgs, specialArgs, ... }:
 
-{ nixpkgs.config.allowUnfree = true; 
+{ nixpkgs.config.allowUnfree = true; nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 imports = [
 ./hardware-configuration.nix
@@ -25,10 +25,9 @@ boot.loader.efi.canTouchEfiVariables = true;
 # boot.kernelPackages = pkgs.linuxPackages_latest; # kernel version
 
 # Networking
-networking = {
-    hostName = specialArgs.host;
-    networkmanager.enable = true;
-};
+networking.hostName = "computer1";
+networking.networkmanager.enable = true;
+
 
 # Set your time zone.
 time.timeZone = specialArgs.timezone;

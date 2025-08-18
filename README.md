@@ -52,40 +52,80 @@ rollback
 
 # flake.nix
 ```nix 
-{
-
-description = "the best description ever";
+{ # nixos-rebuild dry-run --flake /home/user1/nixos --impure --show-trace
+description = "NixOS config flake";
 
 inputs = {
-    version = "25.05";
-    user = "user1";
-    host = "computer1";
-    timezone ="America/Los_Angeles";
-    
-    nixpkgs.url = "nixpkgs/nixos-25.05";
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 };
 
-outputs = { self, nixpkgs }: {
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
-    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
+outputs = { self, nixpkgs, home-manager, ... } @ inputs:
+let
+    version = "25.05";      
+    host = "computer1";
+    user = "user1";
+    timezone ="America/Los_Angeles";
+in
+{ # Single system configuration
+
+nixosConfigurations = {
+
+computer1 = nixpkgs.lib.nixosSystem {
+system = "x86_64-linux";
+modules = [
+inputs.home-manager.nixosModules.home-manager
+./configuration.nix
+];
+specialArgs = {
+    inherit inputs;
+    inherit host;
+    inherit user;
+    inherit version;
+    inherit timezone;
+};};
+
+# desktop = nixpkgs.lib.nixosSystem {
+# system = "x86_64-linux";
+# modules = [
+# inputs.home-manager.nixosModules.home-manager
+# ./configuration.nix
+# ];
+# specialArgs = {
+#     inherit inputs;
+#     inherit host;
+#     inherit user;
+#     inherit version;
+#     inherit timezone;
+# };};
+
+# laptop = nixpkgs.lib.nixosSystem {
+# system = "x86_64-linux";
+# modules = [
+# inputs.home-manager.nixosModules.home-manager
+# ./configuration.nix
+# ];
+# specialArgs = {
+#     inherit inputs;
+#     inherit host;
+#     inherit user;
+#     inherit version;
+#     inherit timezone;
+# };};
 };
 
+};
 }
-
 ```
 
 
 ## flake inputs
 ```nix
 inputs = {
-    version = "25.05";
-    user = "user1";
-    host = "computer1";
-    timezone ="America/Los_Angeles";
-    
-    nixpkgs.url = "nixpkgs/nixos-25.05";
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 };
@@ -93,34 +133,74 @@ inputs = {
 
 ## flake outputs
 ```nix
-outputs = { self, nixpkgs }: {
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
-    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
-};
+
+outputs = { self, nixpkgs, home-manager, ... } @ inputs:
+let
+    version = "25.05";      
+    host = "computer1";
+    user = "user1";
+    timezone ="America/Los_Angeles";
+in
+{ nixosConfigurations = {
+
+# Single system configuration
+computer1 = nixpkgs.lib.nixosSystem {
+system = "x86_64-linux";
+modules = [
+inputs.home-manager.nixosModules.home-manager
+./configuration.nix
+];
+specialArgs = {
+    inherit inputs;
+    inherit host;
+    inherit user;
+    inherit version;
+    inherit timezone;
+};};
+
+# desktop = nixpkgs.lib.nixosSystem {
+# system = "x86_64-linux";
+# modules = [
+# inputs.home-manager.nixosModules.home-manager
+# ./configuration.nix
+# ];
+# specialArgs = {
+#     inherit inputs;
+#     inherit host;
+#     inherit user;
+#     inherit version;
+#     inherit timezone;
+# };};
+
+# laptop = nixpkgs.lib.nixosSystem {
+# system = "x86_64-linux";
+# modules = [
+# inputs.home-manager.nixosModules.home-manager
+# ./configuration.nix
+# ];
+# specialArgs = {
+#     inherit inputs;
+#     inherit host;
+#     inherit user;
+#     inherit version;
+#     inherit timezone;
+# };};
+
+};};
 ```
 
 ## flake system settings
 ```nix 
-systemSettings = {
-  system = "x86_64-linux";  # system arch
-  hostname = "computer1";   # hostname
-};
 ```
 
 ## flake user settings
 ```nix
-userSettings = {
-  username = "user1";
-  name = "user1";
-  email = "user1opez01@gmail.com";
-  dotfilesDir = "~/.dotfiles"; # absolute path of the local repo
-  # wm = "xfce"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
-  # editor = "code"
-};
 ```
 
 # configuration.nix
 ```nix  
+nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
 ```
 
 ## imports
@@ -129,24 +209,10 @@ userSettings = {
 
 ## bootloader
 ```nix
-# bootloader.
-boot.loader.systemd-boot.enable = true;
-boot.loader.efi.canTouchEfiVariables = true;
 ```
 
 ## networking
 ```nix
-# networking
-networking.hostName = "computer1"; # Define your hostname.
-networking.networkmanager.enable = true; # Enable networking
-# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-# networking.proxy.default = "http://user:password@proxy:port/";
-# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-# Open ports in the firewall.
-# networking.firewall.allowedTCPPorts = [ ... ];
-# networking.firewall.allowedUDPPorts = [ ... ];
-# Or disable the firewall altogether.
-# networking.firewall.enable = false;
 ```
 
 ## usb
@@ -158,33 +224,16 @@ services.udisks2.enable = true;
 
 ## Sound
 ```nix
-# Enable sound with pipewire.
-# services.pulseaudio.enable = false;
-# security.rtkit.enable = true;
-# services.pipewire = {
-#   enable = true;
-#   alsa.enable = true;
-#   alsa.support32Bit = true;
-#   pulse.enable = true;
-#   # If you want to use JACK applications, uncomment this
-#   #jack.enable = true;
-#   #media-session.enable = true;
-# };
 ```
 
 ## fonts
 ```nix
 # fonts.packages = with pkgs; [
-#   nerd-fonts.fira-code
-#   nerd-fonts.droid-sans-mono
-#   nerd-fonts.jetbrains-mono
 # ];
 ```
 
 ## time zone
 ```nix
-# Set your time zone.
-time.timeZone = "America/New_York";
 
 ```
 ## file encoding
@@ -207,63 +256,23 @@ i18n.extraLocaleSettings = {
 
 ## enable x11 windowing system
 ```nix
-# enable the x11 windowing system.
-# services.xserver = {
-#   enable = true;
-#   desktopManager = {
-#     xfce = {
-#       enable = true;
-#     };
-#   };
-# };
-# services.displayManager.defaultSession = "xfce";
-
-# # Enable the XFCE Desktop Environment.
-# services.xserver.displayManager.lightdm.enable = true;
-# services.xserver.desktopManager.xfce.enable = true;
 
 ```
 
 ## x11 keymap
 ```nix
-# configure keymap in x11
-# services.xserver.xkb = {
-#   layout = "us";
-#   variant = "";
-# };
-
 ```
 
 ## printer
 ```nix
-# Enable CUPS to print documents.
-services.printing.enable = true;
 ```
 
 ## users
 ```nix
-# Define a user account. Don't forget to set a password with ‘passwd’.
-users.users.user1 = {
-  isNormalUser = true;
-  description = "user1 Lopez";
-  # adding mlocate to use find file within doom emacs
-  extraGroups = [ "networkmanager" "wheel" "storage" "input" "dialout" "video" "render" "mlocate"];
-  packages = with pkgs; [
-  #  thunderbird
-  ];
-};
 ```
 
 ## system packages
 ```nix
-# Install firefox.
-programs.firefox.enable = true;
-
-# Allow unfree packages
-nixpkgs.config.allowUnfree = true;
-
-# List packages installed in system profile. To search, run:
-# $ nix search wget
 environment.systemPackages = with pkgs; [
 
 ];
@@ -285,7 +294,6 @@ nix.settings.auto-optimise-store = true;
 
 ## additional config
 ```nix
-nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 # Enable touchpad support (enabled default in most desktopManager).
 # services.xserver.libinput.enable = true;
@@ -304,61 +312,26 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 # home.nix
 
 ```nix 
-{ config, pkgs, ... }:
-
-{
-<<home.nix.imports>>
-<<home.nix>>
-}
 ```
 
-## home.nix imports
-See [[*home.nix modules][home.nix modules]].
-
-## default settings
-```nix
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "user1";
-  home.homeDirectory = "/home/user1";
-
-  nixpkgs.config.allowUnfree = true;
-  # sessionPath = ["/home/user1/.config/emacs"];
-
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "25.05"; # Please read the comment before changing.
+## home imports
+```nix 
 ```
 
-## home.nix packages inbox
+## home settings settings
 ```nix
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
+home.username = "user1";
+home.homeDirectory = "/home/user1";
+nixpkgs.config.allowUnfree = true;
+home.stateVersion = "25.05"; 
+```
+
+## home packages
+```nix
   home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
   ];
 ```
-## home.nix dotfiles
+## home dotfiles
 ```nix
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -376,25 +349,9 @@ See [[*home.nix modules][home.nix modules]].
   };
 ```
 
-## environment variables
+## home environment variables
 
 ```nix
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. These will be explicitly sourced when using a
-  # shell provided by Home Manager. If you don't want to manage your shell
-  # through Home Manager then you have to manually source 'hm-session-vars.sh'
-  # located at either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/user1/etc/profile.d/hm-session-vars.sh
-  #
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
@@ -409,8 +366,7 @@ See [[*home.nix modules][home.nix modules]].
 # Modules
 
 ## configuration.nix modules
-[[*configuration.nix imports][configuration.nix imports]]
-```nix :noweb-ref configuration.nix-imports
+```nix 
 imports =
   [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -439,7 +395,7 @@ imports =
 ```
 
 ## git.nix
-```nix :tangle ./modules/git.nix
+```nix 
 { config, pkgs, userSettings, ... }:
 
 {
@@ -459,7 +415,7 @@ imports =
 ```
 
 ## python.nix
-```nix :tangle ./modules/python.nix
+```nix 
 { config, lib, pkgs, ... }:
 
 {
@@ -518,7 +474,7 @@ xdotool type -- "$(xsel -bo | tr \\n \\r | sed s/\\r*\$//)"
 ```
 
 ## sh.nix
-```nix :tangle ./modules/sh.nix
+```nix 
 { config, lib, pkgs, userSettings, ... }:
 let
   myAliases = {
@@ -706,7 +662,7 @@ redshift -l 42.361145:-71.057083 &
 }
 ```
 
-### themes.nix
+## themes.nix
 ```nix
   home.file."/home/user1/.themes/Everforest-Dark-Soft" = {
     source = ./themes/everforest-xfce-now-window-borders;
@@ -714,7 +670,7 @@ redshift -l 42.361145:-71.057083 &
   };
 ```
 
-### gtk.nix
+## gtk.nix
 ```nix
   gtk = {
     enable = true;
@@ -740,15 +696,11 @@ redshift -l 42.361145:-71.057083 &
   };
 ```
 
-### xfconf.nix
-- [[file:~/.config/xfce4/desktop][Location on disk]]
+## xfconf.nix
 ```nix
-  xfconf = {
-    enable = true;
-    settings = {
 ```
 
-### keyboard
+## keyboard
 ```nix
       keyboards = {
         "Default/KeyRepeat" = true;
@@ -757,41 +709,20 @@ redshift -l 42.361145:-71.057083 &
       };
 ```
 
-### panel
+## panel
 ```nix
-      xfce4-panel = {
-        "panels" = [1];
-        "panels/panel-1/position" = "p=2;x=3420;y=720";
-        "panels/panel-1/size" = 40;
-        "panels/panel-1/autohide-behavior" = 2;
-        "panels/panel-1/icon-size" = 0;
-        "panels/panel-1/length" = 100.0;
-        "panels/panel-1/mode" = 1;
-        "panels/panel-1/plugin-ids" = [13 2 1 4 6 5 8 9 10];
-        "panels/panel-1/position-locked" = false;
-        "panels/panel-1/length-adjust" = true;
-        "panels/panel-1/background-style" = 0;
-        "panels/darkmode" = true;
 ```
 
-#### desktop settings
+## desktop settings
 ```nix
-      xfce4-desktop = {
-        "backdrop/screen0/monitoreDP-1/workspace0/last-image" =
-          "/home/user1/Dropbox/images/Tranquil_Solitude_social.jpg";
-        "desktop-icons/style" = 0;
-
-      };
 
 ```
 
-#### keyboard shortcuts
+## keyboard shortcuts
 ```nix
-      xfce4-keyboard-shortcuts = {
-        "commands/custom/override" = true;
-
 ```
-#### run scripts
+
+## run scripts
 ```nix
         # Scripts
         "commands/custom/<Super>Print" = "dl-simulate-keystrokes";
@@ -800,16 +731,7 @@ redshift -l 42.361145:-71.057083 &
 
 ```
 
-### run Emacs scripts
-```nix
-        # Emacs Scripts
-        "commands/custom/<Super>Insert" = "emacsclient --eval \"(emacs-everywhere)\"";
-        "commands/custom/<Super>i" = "emacsclient --eval \"(emacs-everywhere)\"";
-        "commands/custom/<Super>BackSpace" = "/home/user1/.config/emacs/bin/org-capture";
-        "commands/custom/<Alt>Favorites" = "/home/user1/.config/emacs/bin/org-capture";
-
-```
-#### launch apps
+## launch apps
 ```nix
         # Launching apps
         "commands/custom/<Super>space" = "xfce4-appfinder";
@@ -825,77 +747,35 @@ redshift -l 42.361145:-71.057083 &
         "commands/custom/<Super>minus" = "xkill";
 
 ```
-#### screenshot
+## screenshot
 ```nix
-        # Screenshot
-        "commands/custom/<Alt>Print" = "xfce4-screenshooter -w";
-        "commands/custom/Print" = "xfce4-screenshooter";
-        "commands/custom/<Shift>Print" = "xfce4-screenshooter -r";
-
 ```
 
-#### XFWM4 Keybindings / Window Manager Keybindings
-#### Select window options
+## XFWM4 Keybindings / Window Manager Keybindings
+## Select window options
 ```nix
-        # xfwm4/custom
-        "xfwm4/custom/override" = true;
-
-        "xfwm4/custom/<Alt>Tab" = "cycle_windows_key";
-        "xfwm4/custom/<Shift><Alt>ISO_Left_Tab" = "cycle_reverse_windows_key";
-
-        "xfwm4/custom/<Shift><Super>space" = "popup_menu_key"; # window menu options
-        "xfwm4/custom/<Super>Delete" = "close_window_key";
 
 ```
-#### Move windows
+## Move windows
 ```nix
-        # Move windows
-        "xfwm4/custom/<Alt><Super>1" = "move_window_workspace_1_key";
-        "xfwm4/custom/<Alt><Super>2" = "move_window_workspace_2_key";
-        "xfwm4/custom/<Super>bracketright" = "move_window_to_monitor_right_key";
-        "xfwm4/custom/<Super>bracketleft" = "move_window_to_monitor_left_key";
 
 ```
-#### Resize windows
+## Resize windows
 ```nix
-        # Resize windows
-        "xfwm4/custom/<Alt>w" = "maximize_window_key";
-        "xfwm4/custom/<Alt>m" = "move_window_key";
-        "xfwm4/custom/<Alt>r" = "resize_window_key";
-        "xfwm4/custom/<Alt>v" = "maximize_vert_key";
-        "xfwm4/custom/<Super>f" = "fullscreen_key";
 
 ```
-#### Tile windows
+## Tile windows
 ```nix
-        # Tile windows
-        "xfwm4/custom/<Super>h" = "tile_left_key";
-        "xfwm4/custom/<Super>l" = "tile_right_key";
-        # "xfwm4/custom/<Shift><Super>h" = "tile_up_left_key";
-        # "xfwm4/custom/<Shift><Super>j" = "tile_down_left_key";
-        # "xfwm4/custom/<Shift><Super>k" = "tile_down_right_key";
-        # "xfwm4/custom/<Shift><Super>Left" = "move_window_left_key";
-        "xfwm4/custom/<Shift><Super>Right" = "move_window_right_key";
-        "xfwm4/custom/<Shift><Super>Up" = "move_window_up_key";
-        "xfwm4/custom/<Shift><Super>Down" = "move_window_down_key";
 ```
 
-#### xsettings
+## xsettings
 ```nix
-     xsettings = {
-       "Gtk/FontName" = "Sans 14";
-       "ThemeName" = "Everforest-Dark-Soft";
-       "IconThemeName" = "elementary-Xfce-dark";
-     };
 ```
-#### XFWM4 Theme
+## XFWM4 Theme
 ```nix
-      xfwm4 = {
-        "general/theme" = "Everforest-Dark-Soft";
-      };
 ```
 
-### GPG Configuration
+## GPG Configuration
 
 ```nix
   programs.gpg.enable = true;
@@ -907,7 +787,7 @@ redshift -l 42.361145:-71.057083 &
 
 ## bluetooth.nix
 - [[*home.nix modules][home.nix modules]]
-```nix :tangle ./system/bluetooth.nix
+```nix 
 { config, lib, pkgs, ... }:
 
 {
@@ -922,7 +802,7 @@ redshift -l 42.361145:-71.057083 &
 ```
 
 ## pipewire.nix
-```nix :tangle ./system/pipewire.nix
+```nix 
 { ... }:
 
 {
@@ -970,8 +850,7 @@ redshift -l 42.361145:-71.057083 &
 ```
 
 ## fonts.nix
-[[*Fonts][Fonts]]
-```nix :tangle ./system/fonts.nix
+```nix 
 { config, pkgs, ... }:
 {
   fonts.packages = with pkgs; [
@@ -983,7 +862,7 @@ redshift -l 42.361145:-71.057083 &
 ```
 
 ## gnome-keyring.nix
-```nix :tangle ./system/gnome-keyring.nix
+```nix .nix
 { ... }:
 
 {
@@ -994,24 +873,23 @@ redshift -l 42.361145:-71.057083 &
 ```
 
 
-#### Autostart
+## autostart
 ```nix conf
 ```
 
-#### Environment variables
-
-```nix conf
-```
-
-#### Permissions
+## system environment variables
 
 ```nix conf
 ```
 
-#### Scripts
+## system environment alias
+
 ```nix conf
 ```
 
-#### windows
+
+# Permissions
+
 ```nix conf
+```
 ```
