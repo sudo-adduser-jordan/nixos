@@ -366,7 +366,7 @@ xfconf.settings.xfce4-screensaver = {
 };
 
 xfconf.settings.xfce4-screenshooter = {
-# "imgur-custom-action-added" = false;
+    "imgur-custom-action-added" = false;
 };
 
 xfconf.settings.xfce4-session = {

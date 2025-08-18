@@ -74,6 +74,7 @@ users.users.${specialArgs.user} = {
 environment.systemPackages = with pkgs; [
 rofi
 vscode
+fastfetch
 
 gh
 git
@@ -81,7 +82,6 @@ github-desktop
 
 pnpm
 nodejs_22
-
 
 discord
 librewolf
