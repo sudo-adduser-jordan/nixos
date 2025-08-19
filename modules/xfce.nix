@@ -208,6 +208,7 @@ xfconf.settings.xfce4-panel = {
 
 # 6
 "plugins/plugin-6" = "clock";
+"plugins/plugin-6/digital-layout" = 3;
 "plugins/plugin-6/digital-time-format" = "%I:%M %p";
 "plugins/plugin-6/digital-date-format" = "%B %d, %Y";
 
