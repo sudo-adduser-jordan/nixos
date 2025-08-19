@@ -149,8 +149,8 @@ xfconf.settings.xfce4-desktop = {
 
 xfconf.settings.xfce4-keyboard-shortcuts = {
 # "xfwm4/custom/override" = true;
-"xfwm4/custom/<Primary>g" = "minimize_window_key";
 "xfwm4/custom/<Super>Up" = "maximize_window_key";
+"xfwm4/custom/<Primary>g" = "hide_window_key";
 "xfwm4/custom/<Super>Down" = "tile_down_key";
 "xfwm4/custom/<Super>Left" = "tile_left_key";
 "xfwm4/custom/<Super>Right" = "tile_right_key";
