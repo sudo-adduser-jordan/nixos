@@ -19,18 +19,17 @@ services.xserver.xkb.variant = "";
 # excludePackages = with pkgs; [ xterm ];
 
 # system
-environment.systemPackages = with pkgs; [ ];
+environment.systemPackages = with pkgs; [
+];
+
 environment.xfce.excludePackages = with pkgs; [ ];
 
 # home
 users.users.${specialArgs.user}.packages = with pkgs; [
-# file-roller
-# orchis-theme     # gtk theme
-# paper-icon-theme # xfce icons
 ];
+
 home-manager.users.${specialArgs.user} = { config, ... }: ({
-# default applications - helpers
-# home.file.".config/xfce4/helpers.rc".text = "TerminalEmulator=alacritty";
+
 home.file = {
 ".config/xfce4/terminal/accels.scm".text = ''
 ; xfce4-terminal GtkAccelMap rc-file         -*- scheme -*-
@@ -102,21 +101,6 @@ home.file = {
 ; (gtk_accel_path "<Actions>/terminal-window/view-menu" "")
 ; (gtk_accel_path "<Actions>/terminal-window/goto-tab-1" "<Alt>1")
 '';
-# https://github.com/catppuccin/xfce4-terminal
-".local/share/xfce4/terminal/colorschemes/catppuccin-mocha.theme".text = ''
-[Scheme]
-Name=Catppuccin-Mocha
-ColorCursor=#f5e0dc
-ColorCursorForeground=#11111b
-ColorCursorUseDefault=FALSE
-ColorForeground=#cdd6f4
-ColorBackground=#1e1e2e
-ColorSelectionBackground=#585b70
-ColorSelection=#cdd6f4
-ColorSelectionUseDefault=FALSE
-TabActivityColor=#fab387
-ColorPalette=#45475a;#f38ba8;#a6e3a1;#f9e2af;#89b4fa;#f5c2e7;#94e2d5;#bac2de;#585b70;#f38ba8;#a6e3a1;#f9e2af;#89b4fa;#f5c2e7;#94e2d5;#a6adc8
-'';
 };
 
 gtk.enable = true;
@@ -132,21 +116,7 @@ gtk.gtk4.extraConfig.Settings = ''
 gtk-application-prefer-dark-theme = true
 '';
 
-
-xdg.portal.enable = true;
-xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-# xdg.userDirs = {
-#     enable = true;
-#     createDirectories = false;
-#     desktop = "${config.home.homeDirectory}/desktop";
-#     documents = "${config.home.homeDirectory}/documents";
-#     download = "${config.home.homeDirectory}/downloads";
-#     music = "${config.home.homeDirectory}/music";
-#     pictures = "${config.home.homeDirectory}/pictures";
-#     publicShare = "${config.home.homeDirectory}/public";
-#     templates = "${config.home.homeDirectory}/templates";
-#     videos = "${config.home.homeDirectory}/videos";
-# };
+# add portals
 
 xfconf.enable = true;
 
@@ -158,34 +128,34 @@ xfconf.settings.xfce4-notifyd = {
 "date-time-custom-format" = "%a %H:%M:%S";
 };
 
-# xfconf.settings.thunar = {
-# "last-view" = "ThunarCompactView";
-# # "misc-show-delete-action" = false;
-# };
+xfconf.settings.thunar = {
+"last-view" = "ThunarCompactView";
+# "misc-show-delete-action" = false;
+};
 
 xfconf.settings.xfce4-desktop = {
-# "backdrop/screen0/monitor0/workspace0/last-image" = "/etc/nixos/plants.jpg";
 #   "last/window-width" = 672;
 #   "last/window-height" = 547;
-  "backdrop/screen0/monitorDP-1/workspace0/last-image" = "/home/user1/Pictures/plants.jpg";
-  "desktop-icons/style" = 1;
-  "desktop-icons/show-hidden-files" = false;
-  "desktop-icons/file-icons/show-filesystem" = false;
-  "desktop-icons/file-icons/show-trash" = false;
-  "desktop-icons/file-icons/show-removable" = false;
-  "desktop-icons/file-icons/show-home" = false;
-  "desktop-icons/show-thumbnails" = false;
+# "backdrop/screen0/monitor0/workspace0/last-image" = "/etc/nixos/plants.jpg";
+"backdrop/screen0/monitor0/workspace0/last-image" = "/home/user1/Pictures/plants.jpg";
+"desktop-icons/style" = 1;
+"desktop-icons/show-hidden-files" = false;
+"desktop-icons/file-icons/show-filesystem" = false;
+"desktop-icons/file-icons/show-trash" = false;
+"desktop-icons/file-icons/show-removable" = false;
+"desktop-icons/file-icons/show-home" = false;
+"desktop-icons/show-thumbnails" = false;
 };
 
 xfconf.settings.xfce4-keyboard-shortcuts = {
-"xfwm4/custom/override" = true;
+# "xfwm4/custom/override" = true;
+"xfwm4/custom/<Primary>g" = "minimize_window_key";
 "xfwm4/custom/<Super>Up" = "maximize_window_key";
+"xfwm4/custom/<Super>Down" = "tile_down_key";
 "xfwm4/custom/<Super>Left" = "tile_left_key";
 "xfwm4/custom/<Super>Right" = "tile_right_key";
-"xfwm4/custom/<Super>Down" = "tile_down_key";
 "xfwm4/custom/<Primary>q" = "close_window_key";
 
-"commands/custom/<Primary>g" = "minimize_window_key";
 "commands/custom/<Primary>space" = "rofi -show drun";
 "commands/custom/<Shift>space" = "xfce4-terminal";
 };
@@ -265,7 +235,7 @@ xfconf.settings.xfce4-panel = {
 "plugins/plugin-11/expand" = false;
 
 # 12
-"plugins/plugin-12" = "pulse-audio";
+"plugins/plugin-12" = "pulseaudio";
 "plugins/plugin-12/enable-keyboard-shortcuts" = true;
 
 # 13
