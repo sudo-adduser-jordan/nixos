@@ -4,6 +4,7 @@ let background-image = "${pkgs.xfce.xfdesktop}/share/backgrounds/xfce/xfce-leave
 
 in 
 { # xfce
+
 services.xserver.enable = true;
 services.xserver.desktopManager.xfce.enable = true;
 services.xserver.displayManager.startx.enable = true;
@@ -18,18 +19,7 @@ services.xserver.xkb.layout = "us";
 services.xserver.xkb.variant = "";
 # excludePackages = with pkgs; [ xterm ];
 
-# system
-environment.systemPackages = with pkgs; [
-];
-
-environment.xfce.excludePackages = with pkgs; [ ];
-
-# home
-users.users.${specialArgs.user}.packages = with pkgs; [
-];
-
 home-manager.users.${specialArgs.user} = { config, ... }: ({
-
 home.file = {
 ".config/xfce4/terminal/accels.scm".text = ''
 ; xfce4-terminal GtkAccelMap rc-file         -*- scheme -*-

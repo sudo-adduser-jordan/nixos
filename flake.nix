@@ -1,14 +1,14 @@
-{ # nixos-rebuild dry-run --flake /home/user1/nixos --impure --show-trace
+{ 
 description = "nixos config flake";
 
 inputs = {
-    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions/";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 };
 
-outputs = { self, nixpkgs, home-manager, ... } @ inputs:
+outputs = { self, nixpkgs, nix-vscode-extensions, home-manager, ... } @ inputs:
 let
     version = "25.05";      
     host = "computer1";
@@ -30,6 +30,7 @@ specialArgs = {
     inherit user;
     inherit version;
     inherit timezone;
+    inherit nix-vscode-extensions;
 };};
 
 # desktop = nixpkgs.lib.nixosSystem {
@@ -59,7 +60,6 @@ specialArgs = {
 #     inherit version;
 #     inherit timezone;
 # };};
-
 };};
 
 }

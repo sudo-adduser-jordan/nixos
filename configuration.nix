@@ -1,24 +1,25 @@
-{ config, pkgs, specialArgs, ... }:
+{ config, pkgs, specialArgs, nix-vscode-extensions, ... }:
 
-{ nixpkgs.config.allowUnfree = true; nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-imports = [
-./hardware-configuration.nix
-./modules/xfce.nix
-./modules/rofi.nix
+{ system.stateVersion = specialArgs.version; 
+    
+nix.settings.experimental-features = [ "nix-command" "flakes" ];
+nixpkgs.config.allowUnfree = true; 
+nixpkgs.overlays = [
+    nix-vscode-extensions.overlays.default
 ];
 
-# Bootloader
+imports = [ # system
+./hardware-configuration.nix
+./modules/xfce.nix
+];
+
 boot.loader.systemd-boot.enable = true;
 boot.loader.efi.canTouchEfiVariables = true;
 # boot.kernelPackages = pkgs.linuxPackages_latest; # kernel version i think
 
-# Networking
 networking.hostName = "computer1";
 networking.networkmanager.enable = true;
 
-
-# Set your time zone.
 time.timeZone = specialArgs.timezone;
 i18n.defaultLocale = "en_US.UTF-8";
 i18n.extraLocaleSettings = {
@@ -33,7 +34,6 @@ i18n.extraLocaleSettings = {
     LC_TIME = "en_US.UTF-8";
 };
 
-# audio 
 # services.pulseaudio.enable = false;
 security.rtkit.enable = true;
 services.pipewire = {
@@ -44,16 +44,6 @@ services.pipewire = {
     #jack.enable = true;
 };
 
-# home manager
-home-manager.users.root = {
-    home.stateVersion = specialArgs.version;
-    # home.file = { "Pictures" = { source = ./Pictures; recursive = true; }; }; 
-};
-home-manager.users.${specialArgs.user} = {
-    home.stateVersion = specialArgs.version;
-    home.file = { "Pictures" = { source = ./Pictures; recursive = true; }; }; 
-};
-
 users.users.${specialArgs.user} = {
     isNormalUser = true;
     description = specialArgs.user;
@@ -62,7 +52,26 @@ users.users.${specialArgs.user} = {
     ];
 };
 
-# system
+home-manager.backupFileExtension = ".bak";
+
+# root
+home-manager.users.root = {
+home.stateVersion = specialArgs.version;
+home.file = { "Pictures" = { source = ./Pictures; recursive = true; }; }; 
+imports =[ 
+./modules/rofi.nix
+# ./modules/vscode.nix
+];};
+
+# user
+home-manager.users.${specialArgs.user} = {
+home.stateVersion = specialArgs.version;
+home.file = { "Pictures" = { source = ./Pictures; recursive = true; }; }; 
+imports = [ 
+./modules/rofi.nix
+./modules/vscode.nix
+];};
+
 environment.systemPackages = with pkgs; [
 rofi
 vscode
@@ -115,13 +124,9 @@ fonts.packages = with pkgs; [
     nerd-fonts.adwaita-mono
 ];
 
-
-# vars
 environment.variables = {
-
 };
 
-# aliases
 environment.shellAliases = {
     codenix = "code ~/nixos";
     clean = "nix-collect-garbage";
@@ -134,7 +139,6 @@ environment.shellAliases = {
     switch = "nixos-rebuild switch --flake /home/${specialArgs.user}/nixos/.";
 };
 
-# portals
 services.flatpak.enable = true; # needs portals
 services.gnome.gnome-keyring.enable = true; 
 xdg.portal.enable = true;
@@ -146,6 +150,5 @@ xdg.portal.extraPortals = [
     pkgs.xdg-desktop-portal-xapp
 ];
 
-system.stateVersion = specialArgs.version;
 }
 
