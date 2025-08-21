@@ -36,7 +36,7 @@ specialArgs = {
 # system = "x86_64-linux";
 # modules = [
 # inputs.home-manager.nixosModules.home-manager
-# ./configuration.nix
+# ./desktop-configuration.nix
 # ];
 # specialArgs = {
 #     inherit inputs;
@@ -50,7 +50,7 @@ specialArgs = {
 # system = "x86_64-linux";
 # modules = [
 # inputs.home-manager.nixosModules.home-manager
-# ./configuration.nix
+# ./laptop-configuration.nix
 # ];
 # specialArgs = {
 #     inherit inputs;
