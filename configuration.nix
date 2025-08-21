@@ -60,7 +60,8 @@ home.stateVersion = specialArgs.version;
 home.file = { "Pictures" = { source = ./Pictures; recursive = true; }; }; 
 imports =[ 
 ./modules/rofi.nix
-# ./modules/vscode.nix
+./modules/vscode.nix
+# ./modules/mousepad.nix
 ];};
 
 # user
@@ -70,6 +71,7 @@ home.file = { "Pictures" = { source = ./Pictures; recursive = true; }; };
 imports = [ 
 ./modules/rofi.nix
 ./modules/vscode.nix
+./modules/mousepad.nix
 ];};
 
 environment.systemPackages = with pkgs; [

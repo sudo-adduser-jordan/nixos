@@ -1,6 +1,10 @@
+{configs, pkgs, ... }:
+{ # xfce mousepad
+home.file ={
+".config/Mousepad/settings.conf".text = ''
 [org/xfce/mousepad/state/application]
 session=['1;;+file:///home/user1/.config/Mousepad/settings.conf']
-enabled-plugins=[]
+enabled-plugins=['mousepad-plugin-shortcuts']
 
 [org/xfce/mousepad/state/window]
 width=950
@@ -11,36 +15,34 @@ left=0
 top=26
 
 [org/xfce/mousepad/state/search]
-search-history=['sha']
-incremental=false
-highlight-all=false
+search-history=['time', 'date-f', 'date', 'icon', 'preact']
 
 [org/xfce/mousepad/preferences/view]
 show-line-numbers=true
-color-scheme='oblivion'
 show-whitespace=true
-show-line-endings=false
-show-right-margin=true
-highlight-current-line=true
 match-braces=true
-word-wrap=false
+highlight-current-line=true
+show-right-margin=true
+show-line-endings=false
 tab-width=4
-auto-indent=false
+auto-indent=true
 smart-backspace=true
-
-[org/xfce/mousepad/preferences/window]
-toolbar-visible=true
-statusbar-visible=true
-remember-position=true
-toolbar-style='icons'
-toolbar-icon-size='small-toolbar'
-menubar-visible=true
+color-scheme='oblivion'
 
 [org/xfce/mousepad/preferences/file]
 add-last-end-of-line=true
-auto-reload=false
+make-backup=false
 
+[org/xfce/mousepad/preferences/window]
+toolbar-visible=false
+opening-mode='window'
+statusbar-visible=true
+toolbar-icon-size='dialog'
+always-show-tabs=false
+remember-position=true
+'';
 
+".config/Mousepad/accels.scm".text = ''
 ; mousepad GtkAccelMap rc-file         -*- scheme -*-
 ; this file is an automated accelerator map dump
 ;
@@ -152,3 +154,8 @@ auto-reload=false
 ; (gtk_accel_path "<Actions>/win.edit.redo" "<Primary>y")
 ; (gtk_accel_path "<Actions>/win.document.write-unicode-bom" "")
 ; (gtk_accel_path "<Actions>/app.preferences.window.toolbar-visible" "")
+'';
+};
+
+}
+
