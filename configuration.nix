@@ -95,6 +95,7 @@ gnome-keyring
 
 systemdgenie
 kdePackages.ksystemlog
+kdePackages.spectacle
 
 xfce.xfce4-whiskermenu-plugin
 

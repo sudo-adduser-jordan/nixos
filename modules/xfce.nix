@@ -17,7 +17,7 @@ services.xserver.displayManager.lightdm.enable = true;
 # '';
 services.xserver.xkb.layout = "us";
 services.xserver.xkb.variant = "";
-# excludePackages = with pkgs; [ xterm ];
+environment.xfce.excludePackages = with pkgs; [ xterm xfce.xfce4-screenshooter ];
 
 home-manager.users.${specialArgs.user} = { config, ... }: ({
 home.file = {
@@ -133,6 +133,7 @@ xfconf.settings.xfce4-keyboard-shortcuts = {
 
 "commands/custom/<Primary>space" = "rofi -show drun";
 "commands/custom/<Shift>space" = "xfce4-terminal";
+"commands/custom/Print" = "spectacle -r";
 };
 
 
