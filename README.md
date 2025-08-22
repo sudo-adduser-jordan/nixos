@@ -8,7 +8,7 @@
 >2. `switch` from `source`
 
 ```sh
-    nixos-rebuild switch --flake /home/{user_account_containing source}/nixos
+    nixos-rebuild switch --flake /home/{user_account_containing source}/nixos .
 ```
 
 >3. you can now edit your `source` in 
