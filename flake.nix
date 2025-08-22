@@ -23,9 +23,9 @@ in
 
 computer1 = nixpkgs.lib.nixosSystem {
 pkgs = import nixpkgs { # global system package config
-  system = "x86_64-linux"; 
-  config.allowUnfree = true;
-  overlays = [ nix-vscode-extensions.overlays.default ];
+    system = "x86_64-linux"; 
+    config.allowUnfree = true;
+    overlays = [ nix-vscode-extensions.overlays.default ];
 };
 modules = [
     inputs.home-manager.nixosModules.home-manager 
