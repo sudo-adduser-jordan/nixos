@@ -11,7 +11,6 @@ imports = [ # system
 
 boot.loader.systemd-boot.enable = true;
 boot.loader.efi.canTouchEfiVariables = true;
-# boot.kernelPackages = pkgs.linuxPackages_latest; 
 
 networking.hostName = "computer1";
 networking.networkmanager.enable = true;
@@ -50,6 +49,7 @@ home-manager.users.${specialArgs.user} = {
     imports = [ 
 ./modules/gtk.nix
 ./modules/rofi.nix
+./modules/fastfetch.nix
 ./modules/vscode.nix
 ./modules/mousepad.nix
 ];};
@@ -67,7 +67,8 @@ home-manager.users.root = {
     imports =[ 
 ./modules/gtk.nix
 ./modules/rofi.nix
-# ./modules/vscode.nix
+./modules/fastfetch.nix
+./modules/vscode.nix
 ./modules/mousepad.nix
 ];};
 
@@ -133,7 +134,6 @@ environment.shellAliases = {
     rollback = "nixos-rebuild switch --rollback";
     generations-delete = "nix-env --delete-generations";
     generations = "nix-env -p /nix/var/nix/profiles/system --list-generations";
-    switch-root = "nixos-rebuild switch";
     switch = "nixos-rebuild switch --flake /home/${specialArgs.user}/nixos/.";
 };
 

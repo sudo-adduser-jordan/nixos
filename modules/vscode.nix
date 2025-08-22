@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
-{ # vscode with package overlay
+{ # vscode with package overlay # home managed module
 programs.vscode.enable = true;
 
 programs.vscode.mutableExtensionsDir = true;
