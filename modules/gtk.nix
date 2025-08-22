@@ -1,23 +1,20 @@
 { config, pkgs, specialArgs, ... }:
 
 {
-gtk = {
-enable = true;
+gtk.enable = true;
 
-theme.name = "Adwaita-Dark";
+gtk.theme.name = "Adwaita-dark";
 # gtk.theme.gtk.package = pkgs.orchis-theme;
 
-iconTheme.name = "Adwaita-Dark";
-# gtk.iconTheme.name = "Moradwita";
-# gtk.iconTheme.package = pkgs.moradwaita;
+gtk.iconTheme.name = "Adwaita-dark";
+# gtk.iconTheme.name = "";
+# gtk.iconTheme.package = pkgs.;
 
-gtk3.extraConfig.Settings = ''
-gtk-application-prefer-dark-theme=1
+# gtk.gtk3.extraConfig.Settings = ''
+# gtk-application-prefer-dark-theme = true
+# '';
+gtk.gtk4.extraConfig.Settings = ''
+gtk-application-prefer-dark-theme = true
 '';
 
-gtk4.extraConfig.Settings = ''
-gtk-application-prefer-dark-theme=1
-'';
-
-};
 }

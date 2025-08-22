@@ -1,21 +1,17 @@
-{ config, pkgs, specialArgs, nix-vscode-extensions, ... }:
+{ config, pkgs, specialArgs, inputs, ... }:
 
 { system.stateVersion = specialArgs.version; 
-    
+
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
-nixpkgs.config.allowUnfree = true; 
-nixpkgs.overlays = [
-    nix-vscode-extensions.overlays.default
-];
 
 imports = [ # system
-./hardware-configuration.nix
-./modules/xfce.nix
+    ./hardware-configuration.nix
+    ./modules/xfce.nix
 ];
 
 boot.loader.systemd-boot.enable = true;
 boot.loader.efi.canTouchEfiVariables = true;
-# boot.kernelPackages = pkgs.linuxPackages_latest; # kernel version i think
+# boot.kernelPackages = pkgs.linuxPackages_latest; 
 
 networking.hostName = "computer1";
 networking.networkmanager.enable = true;
@@ -44,33 +40,34 @@ services.pipewire = {
     #jack.enable = true;
 };
 
+home-manager.useGlobalPkgs = true;
+home-manager.backupFileExtension = ".bak";
+
+# user
+home-manager.users.${specialArgs.user} = {  
+    home.stateVersion = specialArgs.version;
+    home.file = { "Pictures" = { source = ./Pictures; recursive = true; }; }; 
+    imports = [ 
+./modules/gtk.nix
+./modules/rofi.nix
+./modules/vscode.nix
+./modules/mousepad.nix
+];};
+
 users.users.${specialArgs.user} = {
     isNormalUser = true;
     description = specialArgs.user;
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    ];
-};
-
-home-manager.backupFileExtension = ".bak";
+ };
 
 # root
 home-manager.users.root = {
-home.stateVersion = specialArgs.version;
-home.file = { "Pictures" = { source = ./Pictures; recursive = true; }; }; 
-imports =[ 
+    home.stateVersion = specialArgs.version;
+    home.file = { "Pictures" = { source = ./Pictures; recursive = true; }; }; 
+    imports =[ 
+./modules/gtk.nix
 ./modules/rofi.nix
-./modules/vscode.nix
-# ./modules/mousepad.nix
-];};
-
-# user
-home-manager.users.${specialArgs.user} = {
-home.stateVersion = specialArgs.version;
-home.file = { "Pictures" = { source = ./Pictures; recursive = true; }; }; 
-imports = [ 
-./modules/rofi.nix
-./modules/vscode.nix
+# ./modules/vscode.nix
 ./modules/mousepad.nix
 ];};
 
@@ -111,19 +108,18 @@ icon-library
 
 theme-obsidian2
 adwaita-icon-theme
-morewaita-icon-theme
+morewaita-icon-theme # use this
 
 nerd-fonts.adwaita-mono
 nerd-fonts.jetbrains-mono
-
 ];
 
 fonts.packages = with pkgs; [
-    adwaita-fonts
-    font-awesome
-    font-awesome_4
-    font-awesome_5
-    nerd-fonts.adwaita-mono
+adwaita-fonts
+font-awesome
+font-awesome_4
+font-awesome_5
+nerd-fonts.adwaita-mono
 ];
 
 environment.variables = {

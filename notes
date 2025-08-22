@@ -1,4 +1,14 @@
 
+
+# allSystems = [
+  # "x86_64-linux"
+  # "aarch64-linux"
+  # "x86_64-darwin"
+  # # "aarch64-darwin"
+# ];
+
+
+
 #   # laptop
 #   nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
 #     system = "x86_64-linux";
