@@ -17,7 +17,7 @@ services.xserver.displayManager.lightdm.enable = true;
 # '';
 services.xserver.xkb.layout = "us";
 services.xserver.xkb.variant = "";
-environment.xfce.excludePackages = with pkgs; [ xterm xfce.xfce4-screenshooter ];
+environment.xfce.excludePackages = with pkgs; [xterm xfce.xfce4-screenshooter ];
 
 home-manager.users.${specialArgs.user} = { config, ... }: ({
 home.file = {
@@ -151,11 +151,21 @@ xfconf.settings.xfce4-panel = {
 "panels/panel-1/plugin-ids" = [ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 ];
 
 # 1
-"plugins/plugin-1" = "applicationsmenu";
+"plugins/plugin-1" = "whiskermenu";
 "plugins/plugin-1/show-button-title" = false;
 "plugins/plugin-1/show-generic-names" = true;
 "plugins/plugin-1/show-tooltips" = true;
 # "plugins/plugin-1/small" = false;
+
+"/plugins/plugin-1/menu-width" = 32767;
+"/plugins/plugin-1/menu-height" = 32767;
+"/plugins/plugin-1/launcher-show-name" = true;
+"/plugins/plugin-1/position-categories-alternate" = true;
+"/plugins/plugin-1/position-search-alternate" = false;
+"/plugins/plugin-1/position-commands-alternate" = true;
+"/plugins/plugin-1/profile-shape" = 2;
+"/plugins/plugin-1/view-mode" = 0;
+"/plugins/plugin-1/default-category" = 2;
 
 # 2
 "plugins/plugin-2" = "directorymenu";
