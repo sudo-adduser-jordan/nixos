@@ -81,8 +81,12 @@ gh
 git
 github-desktop
 
+unzip
+zip
+
 pnpm
 nodejs_22
+graalvmPackages.graalvm-ce
 
 discord
 librewolf
@@ -147,6 +151,14 @@ xdg.portal.extraPortals = [
     pkgs.xdg-desktop-portal
     pkgs.xdg-desktop-portal-gtk
     pkgs.xdg-desktop-portal-xapp
+];
+
+
+programs.nix-ld.enable = true;
+programs.nix-ld.libraries = with pkgs; [
+#     # Add any missing dynamic libraries for unpackaged programs
+#     # here, NOT in environment.systemPackages
+vscode-marketplace.redhat.java
 ];
 
 }

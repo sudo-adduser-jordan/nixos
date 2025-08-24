@@ -5,12 +5,14 @@ inputs = {
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions/";
     home-manager.url = "github:nix-community/home-manager/release-25.05";  
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # nixpkgs-pinned.url = "github:NixOS/nixpkgs/336eda0d07dc5e2be1f923990ad9fdb6bc8e28e3";
 };
 
 outputs = { 
     self,
     nixpkgs,
     home-manager,
+    # nixpkgs-pinned,
     nix-vscode-extensions,
     ... } @ inputs:
 let
